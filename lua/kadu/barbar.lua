@@ -1,6 +1,6 @@
 -- Importar o plugin
 local barbar = require('barbar')
-
+--
 -- Configuração do Barbar.nvim
 barbar.setup {
   -- Opção para fechar o Neovim quando o último buffer é fechado
