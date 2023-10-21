@@ -9,7 +9,7 @@ source(){
 		# Verifica se o arquivo é um arquivo regular
 		if [ -f "$arquivo" ]
 		then
-			echo "Executando source em $arquivo"
+			echo "$arquivo"
 
       # Executa o comando source no arquivo
       source "$arquivo"
