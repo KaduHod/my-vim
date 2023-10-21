@@ -6,3 +6,4 @@ vim.keymap.set('n', '<leader>ps', function()
 end)
 vim.api.nvim_set_keymap('n', '<Leader>ph', ':lua require"telescope.builtin".find_files({ hidden = true })<CR>', {noremap = true, silent = true}) 
 
+

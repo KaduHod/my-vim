@@ -10,16 +10,24 @@ local on_attach = function(_,_)
 	vim.keymap.set('n', '<leader>t', vim.lsp.buf.hover, {})
 end
 
-require("lspconfig").intelephense.setup {
-	on_attach = on_attach
-}
-require("lspconfig").tsserver.setup {
-	on_attach = on_attach
-}
-require("lspconfig").lua_ls.setup {
-	on_attach = on_attach
+local lsp = require("lspconfig")
+
+lsp.intelephense.setup {
+	on_attach = on_attach,
+	capabilities = capabilities
 }
 
-require("lspconfig").clangd.setup {
-	on_attach = on_attach
+lsp.tsserver.setup {
+	on_attach = on_attach,
+	capabilities = capabilities
+}
+
+lsp.lua_ls.setup {
+	on_attach = on_attach,
+	capabilities = capabilities
+}
+
+lsp.clangd.setup {
+	on_attach = on_attach,
+	capabilities = capabilities
 }

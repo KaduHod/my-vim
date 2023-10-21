@@ -36,8 +36,14 @@ return require('packer').startup(function(use)
 	}
 	-- Janelas
 	use 'romgrk/barbar.nvim'
-	use {
-		'nvim-tree/nvim-tree.lua',
-	}
+	use { 'nvim-tree/nvim-tree.lua' }
+	-- autocomplete
+	use 'hrsh7th/nvim-cmp'
+	use 'hrsh7th/cmp-nvim-lsp'
+	-- snippets de codigo
+	use 'L3MON4D3/LuaSnip'
+	use 'saadparwaiz1/cmp_luasnip'
+	-- vscode like snippets
+	use 'rafamadriz/friendly-snippets'
 
 end)
