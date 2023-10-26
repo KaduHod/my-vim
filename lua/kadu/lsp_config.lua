@@ -6,9 +6,8 @@ local mason_lspconfig = require("mason-lspconfig")
 mason.setup()
 
 mason_lspconfig.setup({
-	ensure_installed = { "intelephense", "quick_lint_js", "lua_ls", "clangd" }
+	ensure_installed = { "apex_ls","intelephense", "quick_lint_js", "lua_ls", "clangd" }
 })
-
 
 lsp_zero.extend_lspconfig()
 
@@ -35,6 +34,11 @@ lsp.lua_ls.setup {
 }
 
 lsp.clangd.setup {
+	on_attach = on_attach,
+	capabilities = capabilities
+}
+
+lsp.apex_ls.setup {
 	on_attach = on_attach,
 	capabilities = capabilities
 }
