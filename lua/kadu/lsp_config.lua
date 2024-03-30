@@ -6,11 +6,7 @@ local mason_lspconfig = require("mason-lspconfig")
 mason.setup()
 
 mason_lspconfig.setup({
-<<<<<<< Updated upstream
-	ensure_installed = { "apex_ls","intelephense", "quick_lint_js", "lua_ls", "clangd" }
-=======
 	ensure_installed = { "gopls", "intelephense", "quick_lint_js", "lua_ls", "clangd", "jdtls", "bashls" }
->>>>>>> Stashed changes
 })
 
 lsp_zero.extend_lspconfig()
