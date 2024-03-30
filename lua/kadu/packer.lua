@@ -6,6 +6,7 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
 
 	use 'wbthomason/packer.nvim'
+	use('f-person/git-blame.nvim')
 	use('nvim-lua/plenary.nvim')
 	-- Procurar arquivos
   	use {
@@ -46,5 +47,6 @@ return require('packer').startup(function(use)
 	use 'saadparwaiz1/cmp_luasnip'
 	-- vscode like snippets
 	use 'rafamadriz/friendly-snippets'
+	use 'mfussenegger/nvim-jdtls'
 
 end)

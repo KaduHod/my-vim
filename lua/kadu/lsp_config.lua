@@ -6,7 +6,11 @@ local mason_lspconfig = require("mason-lspconfig")
 mason.setup()
 
 mason_lspconfig.setup({
+<<<<<<< Updated upstream
 	ensure_installed = { "apex_ls","intelephense", "quick_lint_js", "lua_ls", "clangd" }
+=======
+	ensure_installed = { "gopls", "intelephense", "quick_lint_js", "lua_ls", "clangd", "jdtls", "bashls" }
+>>>>>>> Stashed changes
 })
 
 lsp_zero.extend_lspconfig()
@@ -19,6 +23,16 @@ local on_attach = function(_,_)
 end
 
 lsp.intelephense.setup {
+	on_attach = on_attach,
+	capabilities = capabilities
+}
+
+lsp.bashls.setup {
+	on_attach = on_attach,
+	capabilities = capabilities
+}
+
+lsp.angularls.setup {
 	on_attach = on_attach,
 	capabilities = capabilities
 }
@@ -39,6 +53,11 @@ lsp.clangd.setup {
 }
 
 lsp.apex_ls.setup {
+	on_attach = on_attach,
+	capabilities = capabilities
+}
+
+lsp.jdtls.setup {
 	on_attach = on_attach,
 	capabilities = capabilities
 }
