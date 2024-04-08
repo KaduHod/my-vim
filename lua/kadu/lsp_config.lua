@@ -18,6 +18,11 @@ local on_attach = function(_,_)
 	vim.keymap.set('n', '<leader>t', vim.lsp.buf.hover, {})
 end
 
+lsp.gopls.setup {
+	on_attach = on_attach,
+	capabilities = capabilities
+}
+
 lsp.intelephense.setup {
 	on_attach = on_attach,
 	capabilities = capabilities
