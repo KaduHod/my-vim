@@ -21,7 +21,7 @@ return require('packer').startup(function(use)
 		use 'bluz71/vim-moonfly-colors',
 		as = 'moonfly',
 		use 'luisiacc/gruvbox-baby',
-		as = 'gruvbox',	
+		as = 'gruvbox',
 		use 'folke/tokyonight.nvim',
 		as = 'tokyonight',
 		use 'savq/melange-nvim',
@@ -53,6 +53,8 @@ return require('packer').startup(function(use)
 	}
 	-- Janelas
 	use 'romgrk/barbar.nvim'
+    -- Barra de navegação e icones
+    use 'nvim-tree/nvim-web-devicons'
 	use { 'nvim-tree/nvim-tree.lua' }
 	-- autocomplete
 	use 'hrsh7th/nvim-cmp'
