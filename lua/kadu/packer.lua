@@ -66,4 +66,7 @@ return require('packer').startup(function(use)
 	use 'rafamadriz/friendly-snippets'
 	use 'mfussenegger/nvim-jdtls'
 
+    --smoth scroll
+    use 'karb94/neoscroll.nvim'
+
 end)
