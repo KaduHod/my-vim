@@ -15,22 +15,13 @@ return require('packer').startup(function(use)
   	}
 	--Tema
 	use({
-		--[[
 		use 'ramojus/mellifluous.nvim',
-		as = 'mellifluous',
-		use 'bluz71/vim-moonfly-colors',
-		as = 'moonfly',
-		use 'luisiacc/gruvbox-baby',
-		as = 'gruvbox',
-		use 'folke/tokyonight.nvim',
-		as = 'tokyonight',
-		use 'savq/melange-nvim',
-		as = 'melange',]]--
-		--use 'rebelot/kanagawa.nvim',
+		as = 'mellifluous', -- MUITO BONITO
+		use 'rebelot/kanagawa.nvim',
 		--as = 'kanagawa',
+        --as = 'kanagawa-dragon', -- MUITO BONITO
 		use 'catppuccin/nvim',
-		as = 'catppuccin',
-
+		--as = 'catppuccin',
 	--	'rose-pine/neovim',
 	--	as = 'rose-pine',
 
