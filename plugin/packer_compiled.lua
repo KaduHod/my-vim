@@ -89,6 +89,11 @@ _G.packer_plugins = {
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/barbar.nvim",
     url = "https://github.com/romgrk/barbar.nvim"
   },
+  catppuccin = {
+    loaded = true,
+    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/catppuccin",
+    url = "https://github.com/catppuccin/nvim"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -114,9 +119,9 @@ _G.packer_plugins = {
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/theprimeagen/harpoon"
   },
-  ["kanagawa.nvim"] = {
+  kanagawa = {
     loaded = true,
-    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
+    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/kanagawa",
     url = "https://github.com/rebelot/kanagawa.nvim"
   },
   ["lsp-zero.nvim"] = {
@@ -134,25 +139,15 @@ _G.packer_plugins = {
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
-  ["mellifluous.nvim"] = {
+  mellifluous = {
     loaded = true,
-    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/mellifluous.nvim",
+    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/mellifluous",
     url = "https://github.com/ramojus/mellifluous.nvim"
   },
   ["neoscroll.nvim"] = {
     loaded = true,
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/neoscroll.nvim",
     url = "https://github.com/karb94/neoscroll.nvim"
-  },
-  neovim = {
-    loaded = true,
-    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/neovim",
-    url = "https://github.com/rose-pine/neovim"
-  },
-  nvim = {
-    loaded = true,
-    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/nvim",
-    url = "https://github.com/catppuccin/nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -199,6 +194,11 @@ _G.packer_plugins = {
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["rose-pine"] = {
+    loaded = true,
+    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/rose-pine",
+    url = "https://github.com/rose-pine/neovim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -214,9 +214,9 @@ _G.packer_plugins = {
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
-  ["vscode.nvim"] = {
+  vscode = {
     loaded = true,
-    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/vscode.nvim",
+    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/vscode",
     url = "https://github.com/Mofiqul/vscode.nvim"
   }
 }

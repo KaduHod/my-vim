@@ -14,26 +14,12 @@ return require('packer').startup(function(use)
   		'nvim-telescope/telescope.nvim', tag = '0.1.3',
 		requires = { {'nvim-lua/plenary.nvim'} }
   	}
-	--Tema
-	use({
-        use 'Mofiqul/vscode.nvim',
-        --as = 'vscode',
-		use 'ramojus/mellifluous.nvim',
-		as = 'mellifluous', -- MUITO BONITO
-		use 'rebelot/kanagawa.nvim',
-		--as = 'kanagawa',
-        --as = 'kanagawa-dragon', -- MUITO BONITO
-
-		use 'catppuccin/nvim',
-
-		--as = 'catppuccin',
-		use 'rose-pine/neovim',
-		--as = 'rose-pine',
-
-		config = function()
-			vim.cmd('colorscheme mellifluous')
-		end
-	})
+    -- TEMAS
+    use { 'Mofiqul/vscode.nvim', as = "vscode"}
+    use { 'ramojus/mellifluous.nvim', as = 'mellifluous' }
+    use { 'rebelot/kanagawa.nvim', as = "kanagawa"}
+    use { 'catppuccin/nvim', as = 'catppuccin' }
+    use { 'rose-pine/neovim', as = 'rose-pine' }
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 	use('nvim-treesitter/playground')
 	-- atalho de arquivos
