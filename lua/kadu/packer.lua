@@ -9,7 +9,9 @@ return require('packer').startup(function(use)
 	use('f-person/git-blame.nvim')
 	use('nvim-lua/plenary.nvim')
     use { 'gen740/SmoothCursor.nvim' }
--- Procurar arquivos
+    -- Menu de atalhos nvim
+
+    -- Procurar arquivos
   	use {
   		'nvim-telescope/telescope.nvim', tag = '0.1.3',
 		requires = { {'nvim-lua/plenary.nvim'} }
@@ -17,9 +19,15 @@ return require('packer').startup(function(use)
     -- TEMAS
     use { 'Mofiqul/vscode.nvim', as = "vscode"}
     use { 'ramojus/mellifluous.nvim', as = 'mellifluous' }
-    use { 'rebelot/kanagawa.nvim', as = "kanagawa"}
+    use { "EdenEast/nightfox.nvim", as = "nightfox" }
+    use { "sainnhe/everforest", as = "everforest" }
+    use { "projekt0n/github-nvim-theme", as="github" }
+    use { 'rebelot/kanagawa.nvim', as = "kanagawa" }
     use { 'catppuccin/nvim', as = 'catppuccin' }
     use { 'rose-pine/neovim', as = 'rose-pine' }
+    use { "sonjiku/yawnc.nvim", as = "yawnc" }
+    use { 'Mofiqul/adwaita.nvim', as="adwaita"}
+    use { "scottmckendry/cyberdream.nvim", as="cyberdream" }
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 	use('nvim-treesitter/playground')
 	-- atalho de arquivos

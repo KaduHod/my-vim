@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/SmoothCursor.nvim",
     url = "https://github.com/gen740/SmoothCursor.nvim"
   },
+  adwaita = {
+    loaded = true,
+    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/adwaita",
+    url = "https://github.com/Mofiqul/adwaita.nvim"
+  },
   ["barbar.nvim"] = {
     loaded = true,
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/barbar.nvim",
@@ -104,6 +109,16 @@ _G.packer_plugins = {
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  cyberdream = {
+    loaded = true,
+    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/cyberdream",
+    url = "https://github.com/scottmckendry/cyberdream.nvim"
+  },
+  everforest = {
+    loaded = true,
+    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/everforest",
+    url = "https://github.com/sainnhe/everforest"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -113,6 +128,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/git-blame.nvim",
     url = "https://github.com/f-person/git-blame.nvim"
+  },
+  github = {
+    loaded = true,
+    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/github",
+    url = "https://github.com/projekt0n/github-nvim-theme"
   },
   harpoon = {
     loaded = true,
@@ -148,6 +168,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/neoscroll.nvim",
     url = "https://github.com/karb94/neoscroll.nvim"
+  },
+  nightfox = {
+    loaded = true,
+    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/nightfox",
+    url = "https://github.com/EdenEast/nightfox.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -218,6 +243,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/vscode",
     url = "https://github.com/Mofiqul/vscode.nvim"
+  },
+  yawnc = {
+    loaded = true,
+    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/yawnc",
+    url = "https://github.com/sonjiku/yawnc.nvim"
   }
 }
 
