@@ -6,7 +6,7 @@ local mason_lspconfig = require("mason-lspconfig")
 mason.setup()
 
 mason_lspconfig.setup({
-	ensure_installed = { "gopls", "intelephense", "quick_lint_js", "lua_ls", "clangd", "jdtls", "bashls" }
+	ensure_installed = { "gopls", "intelephense", "quick_lint_js", "lua_ls", "clangd", "jdtls", "bashls", "kotlin_language_server", "pyright"}
 })
 
 lsp_zero.extend_lspconfig()
@@ -19,6 +19,18 @@ local on_attach = function(_,_)
 end
 
 lsp.gopls.setup {
+	on_attach = on_attach,
+	capabilities = capabilities
+}
+
+
+lsp.pyright.setup {
+	on_attach = on_attach,
+	capabilities = capabilities
+}
+
+
+lsp.kotlin_language_server.setup {
 	on_attach = on_attach,
 	capabilities = capabilities
 }
@@ -38,7 +50,7 @@ lsp.angularls.setup {
 	capabilities = capabilities
 }
 
-lsp.tsserver.setup {
+lsp.ts_ls.setup {
 	on_attach = on_attach,
 	capabilities = capabilities
 }

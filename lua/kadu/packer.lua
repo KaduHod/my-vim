@@ -18,7 +18,6 @@ return require('packer').startup(function(use)
   	}
     -- TEMAS
     use { 'Mofiqul/vscode.nvim', as = "vscode"}
-    use { 'ramojus/mellifluous.nvim', as = 'mellifluous' }
     use { "EdenEast/nightfox.nvim", as = "nightfox" }
     use { "sainnhe/everforest", as = "everforest" }
     use { "projekt0n/github-nvim-theme", as="github" }
