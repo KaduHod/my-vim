@@ -6,7 +6,7 @@ local mason_lspconfig = require("mason-lspconfig")
 mason.setup()
 
 mason_lspconfig.setup({
-	ensure_installed = { "gopls", "intelephense", "quick_lint_js", "lua_ls", "clangd", "jdtls", "bashls", "kotlin_language_server", "pyright", "cssls"}
+	ensure_installed = {"tailwindcss", "gopls", "intelephense", "quick_lint_js", "lua_ls", "clangd", "jdtls", "bashls", "kotlin_language_server", "pyright", "cssls"}
 })
 
 lsp_zero.extend_lspconfig()
@@ -17,6 +17,12 @@ local on_attach = function(_,_)
 	vim.keymap.set('n', '<leader>s', require('telescope.builtin').lsp_references, {})
 	vim.keymap.set('n', '<leader>t', vim.lsp.buf.hover, {})
 end
+
+lsp.tailwindcss.setup {
+	on_attach = on_attach,
+	capabilities = capabilities
+}
+
 
 lsp.gopls.setup {
 	on_attach = on_attach,
