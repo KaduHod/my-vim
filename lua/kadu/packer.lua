@@ -27,8 +27,8 @@ return require('packer').startup(function(use)
     use { "sonjiku/yawnc.nvim", as = "yawnc" }
     use { 'Mofiqul/adwaita.nvim', as="adwaita"}
     use { "scottmckendry/cyberdream.nvim", as="cyberdream" }
-	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-	use('nvim-treesitter/playground')
+	use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+	--use('nvim-treesitter/playground')
 	-- atalho de arquivos
 	use('theprimeagen/harpoon')
 	use('mbbill/undotree')
