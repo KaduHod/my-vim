@@ -57,5 +57,17 @@ return require('packer').startup(function(use)
 
     --smoth scroll
     use 'karb94/neoscroll.nvim'
+    -- IA
+    use {
+        "Exafunction/codeium.nvim",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "hrsh7th/nvim-cmp",
+        },
+        config = function()
+            require("codeium").setup({
+            })
+        end
+    }
 
 end)
