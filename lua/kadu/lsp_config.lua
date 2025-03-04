@@ -6,7 +6,8 @@ local mason_lspconfig = require("mason-lspconfig")
 mason.setup()
 
 mason_lspconfig.setup({
-	ensure_installed = {"tailwindcss", "ts_ls", "gopls", "intelephense", "quick_lint_js", "lua_ls", "clangd", "bashls", "kotlin_language_server", "pyright", "cssls", "bufls", "jdtls", "ast_grep"}
+	ensure_installed = {"tailwindcss", "ts_ls", "gopls", "intelephense", "quick_lint_js", "lua_ls", "clangd", "bashls", "kotlin_language_server", "pyright", "cssls", "bufls", "jdtls", "ast_grep", "htmx"}
+
 })
 
 lsp_zero.extend_lspconfig()
@@ -22,6 +23,9 @@ lsp.ast_grep.setup {
     on_attach = on_attach,
 	capabilities = capabilities
 }
+lsp.htmx.setup({
+    filetypes = { "html", "tmpl" }
+})
 lsp.ts_ls.setup {
     on_attach = on_attach,
 	capabilities = capabilities

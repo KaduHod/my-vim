@@ -109,10 +109,11 @@ _G.packer_plugins = {
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
-  ["copilot.vim"] = {
+  ["codeium.nvim"] = {
+    config = { "\27LJ\2\nç\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\17virtual_text\1\0\1\fenabled\2\1\0\3\16enable_chat\2\17virtual_text\0\24enable_local_search\2\nsetup\fcodeium\frequire\0" },
     loaded = true,
-    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/copilot.vim",
-    url = "https://github.com/github/copilot.vim"
+    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/codeium.nvim",
+    url = "https://github.com/Exafunction/codeium.nvim"
   },
   cyberdream = {
     loaded = true,
@@ -247,6 +248,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: codeium.nvim
+time([[Config for codeium.nvim]], true)
+try_loadstring("\27LJ\2\nç\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\17virtual_text\1\0\1\fenabled\2\1\0\3\16enable_chat\2\17virtual_text\0\24enable_local_search\2\nsetup\fcodeium\frequire\0", "config", "codeium.nvim")
+time([[Config for codeium.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

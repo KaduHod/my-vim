@@ -58,8 +58,8 @@ return require('packer').startup(function(use)
     --smoth scroll
     use 'karb94/neoscroll.nvim'
     -- IA
-    use {'github/copilot.vim', branch = 'release' }
-    --[[use {
+--    use {'github/copilot.vim', branch = 'release' }
+    use {
         "Exafunction/codeium.nvim",
         requires = {
             "nvim-lua/plenary.nvim",
@@ -67,8 +67,10 @@ return require('packer').startup(function(use)
         },
         config = function()
             require("codeium").setup({
+                enable_chat = true,
+                enable_local_search = true,
             })
         end
-    }]]
+    }
 
 end)
