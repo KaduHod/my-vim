@@ -10,11 +10,14 @@ cmp.setup({
             require('luasnip').lsp_expand(args.body)
         end,
     },
+    experimental = {
+        ghost_text = true
+    },
     sources = cmp.config.sources(
     {
+        { name = "codeium" },
         { name = "nvim_lsp" },
         { name = 'luasnip' },
-        { name = "codeium" }
     },
     {
         { name = "buffer" },

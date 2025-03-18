@@ -110,7 +110,7 @@ _G.packer_plugins = {
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
   ["codeium.nvim"] = {
-    config = { "\27LJ\2\nç\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\17virtual_text\1\0\1\fenabled\2\1\0\3\16enable_chat\2\17virtual_text\0\24enable_local_search\2\nsetup\fcodeium\frequire\0" },
+    config = { "\27LJ\2\n^\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\16enable_chat\2\24enable_local_search\2\nsetup\fcodeium\frequire\0" },
     loaded = true,
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/codeium.nvim",
     url = "https://github.com/Exafunction/codeium.nvim"
@@ -180,6 +180,16 @@ _G.packer_plugins = {
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    url = "https://github.com/mfussenegger/nvim-dap"
+  },
+  ["nvim-dap-ui"] = {
+    loaded = true,
+    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
+    url = "https://github.com/rcarriga/nvim-dap-ui"
+  },
   ["nvim-jdtls"] = {
     loaded = true,
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/nvim-jdtls",
@@ -189,6 +199,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-nio"] = {
+    loaded = true,
+    path = "/home/carlos/.local/share/nvim/site/pack/packer/start/nvim-nio",
+    url = "https://github.com/nvim-neotest/nvim-nio"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -250,7 +265,7 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: codeium.nvim
 time([[Config for codeium.nvim]], true)
-try_loadstring("\27LJ\2\nç\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\17virtual_text\1\0\1\fenabled\2\1\0\3\16enable_chat\2\17virtual_text\0\24enable_local_search\2\nsetup\fcodeium\frequire\0", "config", "codeium.nvim")
+try_loadstring("\27LJ\2\n^\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\16enable_chat\2\24enable_local_search\2\nsetup\fcodeium\frequire\0", "config", "codeium.nvim")
 time([[Config for codeium.nvim]], false)
 
 _G._packer.inside_compile = false

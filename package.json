@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "roku-debug": "https://github.com/rokucommunity/roku-debug/releases/download/v0.0.0-packages/roku-debug-0.20.12-alpha.20231115202239.tgz"
+  }
+}

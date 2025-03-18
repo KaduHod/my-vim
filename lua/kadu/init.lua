@@ -4,6 +4,7 @@ require("kadu.barbar")
 require("kadu.tree")
 require("kadu.completions")
 require("kadu.luasnip")
+require("kadu.debug")
 require("kadu.smoothscroll")
 require("kadu.packer")
 vim.api.nvim_exec([[
