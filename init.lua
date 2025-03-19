@@ -11,3 +11,11 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*" },
   command = [[%s/\s\+$//e]],
 })
+vim.cmd([[
+  highlight RenderMarkdownH1Bg guibg=#FF0000
+  highlight RenderMarkdownH2Bg guibg=#00FF00
+  highlight RenderMarkdownH3Bg guibg=#0000FF
+  highlight RenderMarkdownH4Bg guibg=#FFFF00
+  highlight RenderMarkdownH5Bg guibg=#FF00FF
+  highlight RenderMarkdownH6Bg guibg=#00FFFF
+]])

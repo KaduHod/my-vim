@@ -6,7 +6,7 @@ local mason_lspconfig = require("mason-lspconfig")
 mason.setup()
 
 mason_lspconfig.setup({
-	ensure_installed = {"tailwindcss", "ts_ls", "gopls", "intelephense", "quick_lint_js", "lua_ls", "clangd", "bashls", "kotlin_language_server", "pyright", "cssls", "bufls", "jdtls", "ast_grep", "htmx"}
+	ensure_installed = {"glow" ,"tailwindcss", "ts_ls", "gopls", "intelephense", "quick_lint_js", "lua_ls", "clangd", "bashls", "kotlin_language_server", "pyright", "cssls", "bufls", "jdtls", "ast_grep", "htmx"}
 
 })
 
@@ -19,6 +19,10 @@ local on_attach = function(_,_)
 	vim.keymap.set('n', '<leader>t', vim.lsp.buf.hover, {})
 end
 
+lsp.glow.setup {
+    on_attach = on_attach,
+	capabilities = capabilities
+}
 lsp.ast_grep.setup {
     on_attach = on_attach,
 	capabilities = capabilities

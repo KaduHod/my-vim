@@ -97,13 +97,48 @@ return require('packer').startup(function(use)
     use {
         'MeanderingProgrammer/render-markdown.nvim',
         after = { 'nvim-treesitter' },
-        -- requires = { 'echasnovski/mini.icons', opt = true }, -- if you use standalone mini plugins
-        requires = { 'nvim-tree/nvim-web-devicons', opt = true }, -- if you prefer nvim-web-devicons
-        config = function()
-            require('render-markdown').setup({
-                file_types = { "markdown", "codecompanion" },
-            })
-        end,
-    }
+	config = function()
+        print("loading render-markdown!")
+		require("render-markdown").setup({
+			file_types = { "markdown", "codecompanion" },
+			heading = {
+				enabled = true,
+				render_modes = false,
+				sign = true,
+				icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
+				position = 'overlay',
+				signs = { '󰫎 ' },
+				width = 'full',
+				left_margin = 0,
+				left_pad = 0,
+				right_pad = 0,
+				min_width = 0,
+				border = false,
+				border_virtual = false,
+				border_prefix = false,
+				above = '▄',
+				below = '▀',
+				backgrounds = {
+					'RenderMarkdownH1Bg',
+					'RenderMarkdownH2Bg',
+					'RenderMarkdownH3Bg',
+					'RenderMarkdownH4Bg',
+					'RenderMarkdownH5Bg',
+					'RenderMarkdownH6Bg',
+				},
+				foregrounds = {
+					'RenderMarkdownH1',
+					'RenderMarkdownH2',
+					'RenderMarkdownH3',
+					'RenderMarkdownH4',
+					'RenderMarkdownH5',
+					'RenderMarkdownH6',
+				},
+				custom = {},
+			},
+		})
+	end
+}
+
 end)
 
