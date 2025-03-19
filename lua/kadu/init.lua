@@ -1,4 +1,5 @@
 require("kadu.remap")
+require("kadu.companion")
 require("kadu.lsp_config")
 require("kadu.barbar")
 require("kadu.tree")
