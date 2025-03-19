@@ -79,6 +79,16 @@ require("codecompanion").setup({
             })
         end,
     },
+    display = {
+        chat = {
+            window = {
+                layout = "vertical",
+                position = "right",
+                height = 1,
+                width = 0.3
+            }
+        }
+    }
 })
 -- Mapeamento de teclas
 vim.keymap.set('n', '<leader>c', '<cmd>CodeCompanionChat<cr>', { noremap = true, silent = true })
