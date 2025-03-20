@@ -116,7 +116,7 @@ _G.packer_plugins = {
     url = "https://github.com/olimorris/codecompanion.nvim"
   },
   ["codeium.nvim"] = {
-    config = { "\27LJ\2\n^\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\24enable_local_search\2\16enable_chat\2\nsetup\fcodeium\frequire\0" },
+    config = { "\27LJ\2\n^\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\16enable_chat\2\24enable_local_search\2\nsetup\fcodeium\frequire\0" },
     loaded = true,
     path = "/home/carlos/.local/share/nvim/site/pack/packer/start/codeium.nvim",
     url = "https://github.com/Exafunction/codeium.nvim"
@@ -242,7 +242,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["render-markdown.nvim"] = {
-    config = { "\27LJ\2\n�\5\0\0\5\0\19\0\0246\0\0\0'\2\1\0B\0\2\0016\0\2\0'\2\3\0B\0\2\0029\0\4\0005\2\6\0005\3\5\0=\3\a\0025\3\b\0005\4\t\0=\4\n\0035\4\v\0=\4\f\0035\4\r\0=\4\14\0035\4\15\0=\4\16\0034\4\0\0=\4\17\3=\3\18\2B\0\2\1K\0\1\0\fheading\vcustom\16foregrounds\1\a\0\0\21RenderMarkdownH1\21RenderMarkdownH2\21RenderMarkdownH3\21RenderMarkdownH4\21RenderMarkdownH5\21RenderMarkdownH6\16backgrounds\1\a\0\0\23RenderMarkdownH1Bg\23RenderMarkdownH2Bg\23RenderMarkdownH3Bg\23RenderMarkdownH4Bg\23RenderMarkdownH5Bg\23RenderMarkdownH6Bg\nsigns\1\2\0\0\n󰫎 \nicons\1\a\0\0\n󰲡 \n󰲣 \n󰲥 \n󰲧 \n󰲩 \n󰲫 \1\0\19\14min_width\3\0\rleft_pad\3\0\17render_modes\1\rposition\foverlay\16backgrounds\0\vcustom\0\tsign\2\18border_prefix\1\19border_virtual\1\16left_margin\3\0\14right_pad\3\0\nabove\b▄\nbelow\b▀\vborder\1\nsigns\0\fenabled\2\nwidth\tfull\nicons\0\16foregrounds\0\15file_types\1\0\2\15file_types\0\fheading\0\1\3\0\0\rmarkdown\18codecompanion\nsetup\20render-markdown\frequire\29loading render-markdown!\nprint\0" },
+    config = { "\27LJ\2\n�\5\0\0\5\0\19\0\0246\0\0\0'\2\1\0B\0\2\0016\0\2\0'\2\3\0B\0\2\0029\0\4\0005\2\6\0005\3\5\0=\3\a\0025\3\b\0005\4\t\0=\4\n\0035\4\v\0=\4\f\0035\4\r\0=\4\14\0035\4\15\0=\4\16\0034\4\0\0=\4\17\3=\3\18\2B\0\2\1K\0\1\0\fheading\vcustom\16foregrounds\1\a\0\0\21RenderMarkdownH1\21RenderMarkdownH2\21RenderMarkdownH3\21RenderMarkdownH4\21RenderMarkdownH5\21RenderMarkdownH6\16backgrounds\1\a\0\0\23RenderMarkdownH1Bg\23RenderMarkdownH2Bg\23RenderMarkdownH3Bg\23RenderMarkdownH4Bg\23RenderMarkdownH5Bg\23RenderMarkdownH6Bg\nsigns\1\2\0\0\n󰫎 \nicons\1\a\0\0\n󰲡 \n󰲣 \n󰲥 \n󰲧 \n󰲩 \n󰲫 \1\0\19\17render_modes\1\tsign\2\nsigns\0\nabove\b▄\nbelow\b▀\vborder\1\16foregrounds\0\fenabled\2\vcustom\0\nicons\0\rposition\foverlay\16backgrounds\0\nwidth\tfull\18border_prefix\1\19border_virtual\1\14min_width\3\0\14right_pad\3\0\rleft_pad\3\0\16left_margin\3\0\15file_types\1\0\2\15file_types\0\fheading\0\1\3\0\0\rmarkdown\18codecompanion\nsetup\20render-markdown\frequire\29loading render-markdown!\nprint\0" },
     load_after = {},
     loaded = true,
     needs_bufread = false,
@@ -282,21 +282,21 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: codeium.nvim
+time([[Config for codeium.nvim]], true)
+try_loadstring("\27LJ\2\n^\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\16enable_chat\2\24enable_local_search\2\nsetup\fcodeium\frequire\0", "config", "codeium.nvim")
+time([[Config for codeium.nvim]], false)
 -- Config for: codecompanion.nvim
 time([[Config for codecompanion.nvim]], true)
 try_loadstring("\27LJ\2\nD\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\2\18\2\0\0009\0\2\0B\0\2\1K\0\1\0\tinit\24kadu.fidget-spinner\frequire\0", "config", "codecompanion.nvim")
 time([[Config for codecompanion.nvim]], false)
--- Config for: codeium.nvim
-time([[Config for codeium.nvim]], true)
-try_loadstring("\27LJ\2\n^\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\24enable_local_search\2\16enable_chat\2\nsetup\fcodeium\frequire\0", "config", "codeium.nvim")
-time([[Config for codeium.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd nvim-treesitter ]]
 vim.cmd [[ packadd render-markdown.nvim ]]
 
 -- Config for: render-markdown.nvim
-try_loadstring("\27LJ\2\n�\5\0\0\5\0\19\0\0246\0\0\0'\2\1\0B\0\2\0016\0\2\0'\2\3\0B\0\2\0029\0\4\0005\2\6\0005\3\5\0=\3\a\0025\3\b\0005\4\t\0=\4\n\0035\4\v\0=\4\f\0035\4\r\0=\4\14\0035\4\15\0=\4\16\0034\4\0\0=\4\17\3=\3\18\2B\0\2\1K\0\1\0\fheading\vcustom\16foregrounds\1\a\0\0\21RenderMarkdownH1\21RenderMarkdownH2\21RenderMarkdownH3\21RenderMarkdownH4\21RenderMarkdownH5\21RenderMarkdownH6\16backgrounds\1\a\0\0\23RenderMarkdownH1Bg\23RenderMarkdownH2Bg\23RenderMarkdownH3Bg\23RenderMarkdownH4Bg\23RenderMarkdownH5Bg\23RenderMarkdownH6Bg\nsigns\1\2\0\0\n󰫎 \nicons\1\a\0\0\n󰲡 \n󰲣 \n󰲥 \n󰲧 \n󰲩 \n󰲫 \1\0\19\14min_width\3\0\rleft_pad\3\0\17render_modes\1\rposition\foverlay\16backgrounds\0\vcustom\0\tsign\2\18border_prefix\1\19border_virtual\1\16left_margin\3\0\14right_pad\3\0\nabove\b▄\nbelow\b▀\vborder\1\nsigns\0\fenabled\2\nwidth\tfull\nicons\0\16foregrounds\0\15file_types\1\0\2\15file_types\0\fheading\0\1\3\0\0\rmarkdown\18codecompanion\nsetup\20render-markdown\frequire\29loading render-markdown!\nprint\0", "config", "render-markdown.nvim")
+try_loadstring("\27LJ\2\n�\5\0\0\5\0\19\0\0246\0\0\0'\2\1\0B\0\2\0016\0\2\0'\2\3\0B\0\2\0029\0\4\0005\2\6\0005\3\5\0=\3\a\0025\3\b\0005\4\t\0=\4\n\0035\4\v\0=\4\f\0035\4\r\0=\4\14\0035\4\15\0=\4\16\0034\4\0\0=\4\17\3=\3\18\2B\0\2\1K\0\1\0\fheading\vcustom\16foregrounds\1\a\0\0\21RenderMarkdownH1\21RenderMarkdownH2\21RenderMarkdownH3\21RenderMarkdownH4\21RenderMarkdownH5\21RenderMarkdownH6\16backgrounds\1\a\0\0\23RenderMarkdownH1Bg\23RenderMarkdownH2Bg\23RenderMarkdownH3Bg\23RenderMarkdownH4Bg\23RenderMarkdownH5Bg\23RenderMarkdownH6Bg\nsigns\1\2\0\0\n󰫎 \nicons\1\a\0\0\n󰲡 \n󰲣 \n󰲥 \n󰲧 \n󰲩 \n󰲫 \1\0\19\17render_modes\1\tsign\2\nsigns\0\nabove\b▄\nbelow\b▀\vborder\1\16foregrounds\0\fenabled\2\vcustom\0\nicons\0\rposition\foverlay\16backgrounds\0\nwidth\tfull\18border_prefix\1\19border_virtual\1\14min_width\3\0\14right_pad\3\0\rleft_pad\3\0\16left_margin\3\0\15file_types\1\0\2\15file_types\0\fheading\0\1\3\0\0\rmarkdown\18codecompanion\nsetup\20render-markdown\frequire\29loading render-markdown!\nprint\0", "config", "render-markdown.nvim")
 
 time([[Sequenced loading]], false)
 
