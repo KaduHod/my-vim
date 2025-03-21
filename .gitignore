@@ -1,4 +1,6 @@
 plugin/packer_compiled.lua
+plugin/packer_compiled.lua
+plugin/*
 node_modules
 package-lock.json
 companion.key
