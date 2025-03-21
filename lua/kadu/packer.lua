@@ -17,6 +17,7 @@ return require('packer').startup(function(use)
         requires = { {'nvim-lua/plenary.nvim'} }
     }
     -- TEMAS
+    use { "ficcdaf/ashen.nvim" , as = "ashen" }
     use { 'Mofiqul/vscode.nvim', as = "vscode"}
     use { "EdenEast/nightfox.nvim", as = "nightfox" }
     use { "sainnhe/everforest", as = "everforest" }
@@ -72,6 +73,21 @@ return require('packer').startup(function(use)
             })
         end
     }
+    -- Screen shots de codigo
+--[[    use {
+        "mistricky/codesnap.nvim",
+        build = "make build_generator",
+        keys = {
+            { "<leader>ft", "<cmd>CodeSnap<cr>", mode = "x", desc = "Save selected code snapshot into clipboard" },
+            { "<leader>cs", "<cmd>CodeSnapSave<cr>", mode = "x", desc = "Save selected code snapshot in ~/Pictures" },
+        },
+        opts = {
+            save_path = "~/code-pictures",
+            has_breadcrumbs = true,
+            bg_theme = "bamboo",
+        },
+    }]]--
+    use {'mistricky/codesnap.nvim', run = 'make'}
     -- DEBUGGER
     use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
     use {
