@@ -1,11 +1,12 @@
 -- ê a chave de API de um arquivo
 local api_key = vim.fn.readfile(vim.fn.expand("/home/carlos/.config/nvim/companion.key"), "l")  -- lê o arquivo e pega a primeira linha
-api_key = api_key[1]
+local deep_seek_key = api_key[1]
+local anthropic_key = api_key[2]
 -- Configuração do codecompanion com a chave da API
 require("codecompanion").setup({
     strategies = {
         chat = {
-            adapter = "deepseek", -- Usa o adaptador deepseek para chat
+            adapter = "anthropic", -- Usa o adaptador deepseek para chat
         },
         -- Adicione outras estratégias se necessário
     },
@@ -14,7 +15,7 @@ require("codecompanion").setup({
             return require("codecompanion.adapters").extend("openai_compatible", {
                 env = {
                     url = "https://api.deepseek.com",
-                    api_key = api_key,
+                    api_key = deep_seek_key,
                     chat_url = "/v1/chat/completions",
                 },
                 headers = {
@@ -76,6 +77,13 @@ require("codecompanion").setup({
                         },
                     }
                 },
+            })
+        end,
+        anthropic = function()
+            return require("codecompanion.adapters").extend('anthropic',{
+                env = {
+                    api_key = anthropic_key
+                }
             })
         end,
     },

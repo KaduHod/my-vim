@@ -87,7 +87,10 @@ return require('packer').startup(function(use)
             bg_theme = "bamboo",
         },
     }]]--
-    use {'mistricky/codesnap.nvim', run = 'make'}
+    use {
+        'mistricky/codesnap.nvim',
+        run = 'make',
+    }
     -- DEBUGGER
     use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
     use {
