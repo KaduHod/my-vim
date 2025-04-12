@@ -6,7 +6,7 @@ local anthropic_key = api_key[2]
 require("codecompanion").setup({
     strategies = {
         chat = {
-            adapter = "anthropic", -- Usa o adaptador deepseek para chat
+            adapter = "deepseek", -- Usa o adaptador deepseek para chat
         },
         -- Adicione outras estratégias se necessário
     },

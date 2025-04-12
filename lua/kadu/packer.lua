@@ -45,6 +45,7 @@ return require('packer').startup(function(use)
     use 'romgrk/barbar.nvim'
     -- Barra de navegação e icones
     use 'nvim-tree/nvim-web-devicons'
+    use 'DaikyXendo/nvim-material-icon'
     use { 'nvim-tree/nvim-tree.lua' }
     -- autocomplete
     use 'hrsh7th/nvim-cmp'
