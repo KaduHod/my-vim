@@ -49,8 +49,8 @@ require('smoothcursor').setup({
     autostart = true,           -- Automatically start SmoothCursor
     always_redraw = true,       -- Redraw the screen on each update
     flyin_effect = "top",         -- Choose "bottom" or "top" for flying effect
-    speed = 50,                 -- Max speed is 100 to stick with your current position
-    intervals = 35,             -- Update intervals in milliseconds
+    speed = 20,                 -- Max speed is 100 to stick with your current position
+    intervals = 10,             -- Update intervals in milliseconds
     priority = 10,              -- Set marker priority
     timeout = 3000,             -- Timeout for animations in milliseconds
     threshold = 0,              -- Animate only if cursor moves more than this many lines
