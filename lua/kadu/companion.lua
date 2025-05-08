@@ -4,11 +4,80 @@ local deep_seek_key = api_key[1]
 local anthropic_key = api_key[2]
 -- Configuração do codecompanion com a chave da API
 require("codecompanion").setup({
+    opts = {
+        strategies = {
+            chat = { enabled = true },
+            commit = {
+                enabled = true,
+                provider = function()
+                    -- Aqui vamos capturar o git diff manualmente
+                    local ok, Job = require("plenary.job")
+                    if not ok then
+                        vim.notify("plenary.job not found", vim.log.levels.ERROR)
+                        return nil
+                    end
+                    local diff = ""
+
+                    Job:new({
+                        command = "git",
+                        args = { "diff", "--cached" }, -- <-- usa o staged
+                        on_exit = function(j, _)
+                            diff = table.concat(j:result(), "\n")
+                        end,
+                    }):sync()
+
+                    if diff == "" then
+                        Job:new({
+                            command = "git",
+                            args = { "diff" }, -- <-- se não houver staged, pega unstaged
+                            on_exit = function(j, _)
+                                diff = table.concat(j:result(), "\n")
+                            end,
+                        }):sync()
+                    end
+
+                    if diff == "" then
+                        vim.notify("[CodeCompanion] Nenhum diff encontrado.", vim.log.levels.WARN)
+                        return nil
+                    end
+
+                    return {
+                        context = "Please generate a commit message based on the following diff:",
+                        code = diff,
+                    }
+                end,
+            },
+        },
+    },
     strategies = {
         chat = {
             adapter = "deepseek", -- Usa o adaptador deepseek para chat
+            slash_commands = {
+                ["file"] = {
+                    -- Location to the slash command in CodeCompanion
+                    callback = "strategies.chat.slash_commands.file",
+                    description = "Select a file using Telescope",
+                    opts = {
+                        provider = "telescope", -- Can be "default", "telescope", "fzf_lua", "mini_pick" or "snacks"
+                        contains_code = true,
+                    },
+                },
+            },
         },
-        -- Adicione outras estratégias se necessário
+        inline = {
+            adapter = "deepseek",
+            keymaps = {
+                accept_change = {
+                    modes = { n = "ga" },
+                    description = "Accept the suggested change",
+                },
+                reject_change = {
+                    modes = { n = "gr" },
+                    description = "Reject the suggested change",
+                },
+            },
+            layout = "vertical", -- vertical|horizontal|buffer
+        },
     },
     adapters = {
         deepseek = function()
@@ -95,9 +164,24 @@ require("codecompanion").setup({
                 height = 1,
                 width = 0.3
             }
-        }
+        },
+        diff = {
+            enabled = true,
+            close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
+            layout = "vertical", -- vertical|horizontal split for default provider
+            opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
+            provider = "default", -- default|mini_diff
+        },
     }
 })
 -- Mapeamento de teclas
 vim.keymap.set('n', '<leader>c', '<cmd>CodeCompanionChat<cr>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>C', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true})
+vim.keymap.set('v', '<leader>rf', ':CodeCompanion Refactor<CR>', { desc = 'Refatorar seleção' })
+vim.keymap.set('v', '<leader>im', ':CodeCompanion Improve<CR>', { desc = 'Melhorar seleção' })
+vim.keymap.set('v', '<leader>fx', ':CodeCompanion Fix<CR>', { desc = 'Corrigir seleção' })
+vim.keymap.set('v', '<leader>ex', ':CodeCompanion Explain<CR>', { desc = 'Explicar seleção' })
+vim.keymap.set('v', '<leader>ts', ':CodeCompanion Tests<CR>', { desc = 'Gerar testes para seleção' })
+vim.keymap.set('v', '<leader>cc', function()
+  require('codecompanion').chat()
+end, { desc = "Abrir chat com seleção" })

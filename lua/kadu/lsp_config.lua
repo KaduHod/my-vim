@@ -91,11 +91,6 @@ lsp.angularls.setup {
 	capabilities = capabilities
 }
 
-lsp.ts_ls.setup {
-	on_attach = on_attach,
-	capabilities = capabilities
-}
-
 lsp.lua_ls.setup {
 	on_attach = on_attach,
 	capabilities = capabilities

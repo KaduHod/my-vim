@@ -15,4 +15,12 @@ vim.api.nvim_exec([[
     au BufNewFile,BufRead *.tmpl setfiletype html
   augroup END
 ]], false)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
+  callback = function()
+    vim.keymap.set("n", "<leader>p", function()
+      vim.cmd("!npx prettier --write %")
+    end, { buffer = true })
+  end,
+})
 print('Arquivo kaduhod carregado!')
