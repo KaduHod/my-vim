@@ -1,0 +1,50 @@
+[
+    {
+        "key": "space p f",
+        "command": "workbench.action.quickOpen" // find_files
+    },
+    {
+        "key": "alt u",
+        "command": "workbench.view.scm"
+    }
+    {
+        "key": "alt+t",
+        "command": "workbench.action.toggleSidebarVisibility"
+    }
+    {
+        "key": "space p",
+        "command": "workbench.action.showAllSymbols" // git_files
+    },
+    {
+        "key": "space p s",
+        "command": "workbench.action.findInFiles" // grep_string
+    },
+    {
+        "key": "space h",
+        "command": "workbench.action.quickOpen" // arquivos ocultos (sem filtro)
+    },
+    {
+        "key": "space w",
+        "command": "codecompanion.createWorkspace" // comando customizado hipotético
+    },
+    {
+        "key": "space d",
+        "command": "editor.action.revealDefinition",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "g i",
+        "command": "editor.action.goToImplementation",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "space s",
+        "command": "editor.action.referenceSearch.trigger",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "space t",
+        "command": "editor.action.showHover",
+        "when": "editorTextFocus"
+    }
+]
