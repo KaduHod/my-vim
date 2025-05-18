@@ -1,50 +1,75 @@
 [
     {
         "key": "space p f",
-        "command": "workbench.action.quickOpen" // find_files
+        "command": "workbench.action.quickOpen",
+        "when": "vim.mode != 'Insert'" // find_files
     },
     {
         "key": "alt u",
         "command": "workbench.view.scm"
-    }
+    },
     {
         "key": "alt+t",
         "command": "workbench.action.toggleSidebarVisibility"
-    }
+    },
     {
         "key": "space p",
-        "command": "workbench.action.showAllSymbols" // git_files
+        "command": "workbench.action.showAllSymbols",
+        "when": "vim.mode != 'Insert'" // git_files
     },
     {
         "key": "space p s",
-        "command": "workbench.action.findInFiles" // grep_string
+        "command": "workbench.action.findInFiles",
+        "when": "vim.mode != 'Insert'" // grep_string
     },
     {
         "key": "space h",
-        "command": "workbench.action.quickOpen" // arquivos ocultos (sem filtro)
+        "command": "workbench.action.quickOpen",
+        "when": "vim.mode != 'Insert'" // arquivos ocultos (sem filtro)
     },
     {
         "key": "space w",
-        "command": "codecompanion.createWorkspace" // comando customizado hipotético
+        "command": "codecompanion.createWorkspace",
+        "when": "vim.mode != 'Insert'" // comando customizado hipotético
     },
     {
         "key": "space d",
         "command": "editor.action.revealDefinition",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "g i",
-        "command": "editor.action.goToImplementation",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && vim.mode != 'Insert'"
     },
     {
         "key": "space s",
         "command": "editor.action.referenceSearch.trigger",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && vim.mode != 'Insert'"
     },
     {
         "key": "space t",
         "command": "editor.action.showHover",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && vim.mode != 'Insert'"
+    },
+    {
+        "key": "alt+,",
+        "command": "workbench.action.previousEditor",
+        "when": "editorTextFocus || editorFocus"
+    },
+    {
+        "key": "alt+.",
+        "command": "workbench.action.nextEditor",
+        "when": "editorTextFocus || editorFocus"
+    },
+    {
+        "key": "alt+c",
+        "command": "workbench.action.closeActiveEditor",
+        "when": "editorTextFocus || editorFocus"
+    },
+    {
+        "key": "enter",
+        "command": "acceptSelectedSuggestion",
+        "when": "suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "tab",
+        "command": "codeium.acceptCompletion",
+        "when": "editorTextFocus && codeium.hasCompletionItem && !suggestWidgetVisible"
     }
 ]

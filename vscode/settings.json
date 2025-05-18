@@ -1,7 +1,4 @@
 {
-    "vscode-neovim.useCtrlKeysForNormalMode": false,
-    "vscode-neovim.disableAnnoyingNeovimMessage": true,
-    "vscode-neovim.enableNeovimCtrlKeys": true,
     "editor.fontFamily": "JetBrains Mono, Fira Code, monospace",
     "editor.fontLigatures": true,
     "editor.fontSize": 14,
@@ -16,6 +13,63 @@
     "workbench.iconTheme": "vscode-icons",
     "explorer.confirmDelete": false,
     "terminal.integrated.fontFamily": "JetBrains Mono",
-    "breadcrumbs.enabled": true
-}
+    "breadcrumbs.enabled": true,
 
+    // Configurações de autocompletar e Codeium
+    "editor.inlineSuggest.enabled": true,
+    "editor.suggestSelection": "first",
+    "editor.suggest.insertMode": "replace",
+    "editor.acceptSuggestionOnEnter": "on",
+    "codeium.enableConfig": true,
+    "codeium.inlineCompletionProvider": true,
+    "editor.suggestOrder": [
+        "codeium",
+        "languageServerProvided",
+        "snippets",
+        "text"
+    ],
+
+    // Configurações do VSCodeVim
+    "vim.leader": "<Space>",
+    "vim.useCtrlKeys": true,
+    "vim.useSystemClipboard": true,
+    "vim.hlsearch": true,
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+
+    // Estas configurações são essenciais para resolver seu problema
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [":"],
+            "after": [":"]
+        },
+        {
+            "before": [" "],
+            "after": [" "]
+        }
+    ],
+    "vim.handleKeys": {
+        ":": false,
+        " ": false
+    },
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<A-,>"],
+            "commands": ["workbench.action.previousEditor"]
+        },
+        {
+            "before": ["<A-.>"],
+            "commands": ["workbench.action.nextEditor"]
+        },
+        {
+            "before": ["<A-c>"],
+            "commands": ["workbench.action.closeActiveEditor"]
+        }
+    ],
+    "yaml.schemas": {
+        "/home/carlos/.vscode/extensions/continue.continue-1.0.10-linux-x64/config-yaml-schema.json": [
+            ".continue/**/*.yaml"
+        ]
+    },
+    "editor.lineNumbers": "relative"
+}
