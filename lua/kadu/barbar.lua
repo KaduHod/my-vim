@@ -15,8 +15,8 @@ barbar.setup {
 }
 
 -- Configurar os mapeamentos (teclas de atalho) para navegar entre as guias
-vim.api.nvim_set_keymap('n', '<A-,>', '<cmd>BufferPrevious<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<A-.>', '<cmd>BufferNext<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>,', '<cmd>BufferPrevious<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>.', '<cmd>BufferNext<CR>', { noremap = true, silent = true })
 
 -- Opcional: Configurar um atalho para fechar o buffer atual
 vim.api.nvim_set_keymap('n', '<A-c>', '<cmd>BufferClose<CR>', { noremap = true, silent = true })

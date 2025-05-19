@@ -6,4 +6,4 @@ tree.setup({
 	filters = { dotfiles = false }
 })
 
-vim.api.nvim_set_keymap('n', '<A-t>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>t', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
