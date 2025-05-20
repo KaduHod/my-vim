@@ -61,7 +61,7 @@ return require('packer').startup(function(use)
     use 'karb94/neoscroll.nvim'
     -- IA
     --    use {'github/copilot.vim', branch = 'release' }
-    use {
+    --[[use {
         "Exafunction/codeium.nvim",
         requires = {
             "nvim-lua/plenary.nvim",

@@ -8,7 +8,7 @@ require("codecompanion").setup({
         strategies = {
             chat = { enabled = true },
             commit = {
-                enabled = true,
+                enabled = false,
                 provider = function()
                     -- Aqui vamos capturar o git diff manualmente
                     local ok, Job = require("plenary.job")
@@ -177,11 +177,11 @@ require("codecompanion").setup({
 -- Mapeamento de teclas
 vim.keymap.set('n', '<leader>c', '<cmd>CodeCompanionChat<cr>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>C', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true})
-vim.keymap.set('v', '<leader>rf', ':CodeCompanion Refactor<CR>', { desc = 'Refatorar seleção' })
-vim.keymap.set('v', '<leader>im', ':CodeCompanion Improve<CR>', { desc = 'Melhorar seleção' })
-vim.keymap.set('v', '<leader>fx', ':CodeCompanion Fix<CR>', { desc = 'Corrigir seleção' })
-vim.keymap.set('v', '<leader>ex', ':CodeCompanion Explain<CR>', { desc = 'Explicar seleção' })
-vim.keymap.set('v', '<leader>ts', ':CodeCompanion Tests<CR>', { desc = 'Gerar testes para seleção' })
-vim.keymap.set('v', '<leader>cc', function()
-  require('codecompanion').chat()
-end, { desc = "Abrir chat com seleção" })
+-- vim.keymap.set('v', '<leader>rf', ':CodeCompanion Refactor<CR>', { desc = 'Refatorar seleção' })
+--vim.keymap.set('v', '<leader>im', ':CodeCompanion Improve<CR>', { desc = 'Melhorar seleção' })
+--vim.keymap.set('v', '<leader>fx', ':CodeCompanion Fix<CR>', { desc = 'Corrigir seleção' })
+--vim.keymap.set('v', '<leader>ex', ':CodeCompanion Explain<CR>', { desc = 'Explicar seleção' })
+--vim.keymap.set('v', '<leader>ts', ':CodeCompanion Tests<CR>', { desc = 'Gerar testes para seleção' })
+--vim.keymap.set('v', '<leader>cc', function()
+--  require('codecompanion').chat()
+--end, { desc = "Abrir chat com seleção" })
