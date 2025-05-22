@@ -19,3 +19,16 @@ vim.cmd([[
   highlight RenderMarkdownH5Bg guibg=#FF00FF
   highlight RenderMarkdownH6Bg guibg=#00FFFF
 ]])
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+    pattern = "*",
+    callback = function()
+        if vim.bo.fileencoding ~= 'latin1' then
+            vim.bo.fileencoding = 'latin1'
+            vim.cmd('e!')
+        end
+    end
+})
+vim.o.fileencoding = 'latin1'
+vim.o.fileencodings = 'latin1'
+vim.bo.fileencoding = 'latin1'
