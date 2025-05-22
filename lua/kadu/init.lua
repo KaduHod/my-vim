@@ -8,6 +8,7 @@ require("kadu.luasnip")
 require("kadu.debug")
 require("kadu.smoothscroll")
 require("kadu.remoteGrep")
+require("kadu.remoteFindOpen")
 --require("kadu.markdown")
 require("kadu.packer")
 vim.api.nvim_exec([[
