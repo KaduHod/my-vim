@@ -67,4 +67,45 @@ end, {
     nargs = "+",
     desc = "Busca com grep no projeto atual",
 })
-print('Arquivo kaduhod carregado!')
+vim.api.nvim_create_user_command("FindFiles", function(opts)
+    local buf = vim.api.nvim_create_buf(false, true)
+    local width = math.floor(vim.o.columns * 0.8)
+    local height = math.floor(vim.o.lines * 0.8)
+    local row = math.floor((vim.o.lines - height) / 2)
+    local col = math.floor((vim.o.columns - width) / 2)
+
+    local win = vim.api.nvim_open_win(buf, true, {
+        relative = "editor",
+        width = width,
+        height = height,
+        row = row,
+        col = col,
+        style = "minimal",
+        border = "rounded",
+    })
+
+    local close_win = function()
+        if vim.api.nvim_win_is_valid(win) then
+            vim.api.nvim_win_close(win, true)
+        end
+    end
+
+    -- Fechar janela com 'q' ou <Esc>
+    vim.keymap.set("n", "q", close_win, { buffer = buf })
+    vim.keymap.set("n", "<Esc>", close_win, { buffer = buf })
+
+    -- Abrir arquivo e fechar janela ao pressionar <CR>
+    vim.keymap.set("n", "<CR>", function()
+        local line = vim.api.nvim_get_current_line()
+        local filepath = line:match("^(.-)$")
+        if filepath and vim.fn.filereadable(filepath) == 1 then
+            close_win()
+            vim.cmd("edit " .. filepath)
+        end
+    end, { buffer = buf })
+
+    require("kadu.search").find_files_in_project(opts.args, buf)
+end, {
+    nargs = 1,
+    desc = "Busca arquivos por nome no projeto atual",
+})print('Arquivo kaduhod carregado!')
