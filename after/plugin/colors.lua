@@ -1,7 +1,10 @@
 function ColorMyPencils(color)
-	color = color or 'kanagawa'
+	color = color or 'vscode'
 	vim.cmd.colorscheme(color)
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 ColorMyPencils()
+vim.api.nvim_create_user_command('Color', function(opts)
+	ColorMyPencils()
+end, { nargs = '?' })
