@@ -7,6 +7,10 @@ local function find_project_root()
     local current_dir = vim.fn.expand("%:p:h")
     local current_file = vim.fn.expand("%:p")
 
+    if _G.is_remote then
+        return _G.remote_dir
+    end
+
     -- Verificar se estamos em uma conexão SCP
     if string.match(current_file, "^scp://") then
         -- Extrair o caminho remoto do URI SCP
@@ -47,22 +51,13 @@ local function run_grep(search_terms, project_root, is_remote)
     end
 
     local grep_cmd
-    print("\n=== DEBUG REMOTE STATE ===")
-    print("_G.is_remote type:", type(_G.is_remote))
-    print("_G.is_remote value:", _G.is_remote)
-    print("_G.host:", _G.host or "nil")
-    print("_G.remote_dir:", _G.remote_dir or "nil")
-    print("is_remote param:", is_remote)
-    print("=========================\n")
-
 
     -- Verificação robusta do estado remoto
     local is_actually_remote = (_G.is_remote == true) or (is_remote == true)
     if is_actually_remote then
         local output_file = "/tmp/grep_output.txt"
-
         grep_cmd = string.format(
-        'ssh deployer@172.17.0.2 \'grep -rn --binary-files=without-match --exclude-dir=.git --exclude-dir=node_modules "%s" %s\' 2>/dev/null',
+            'ssh servidor_treinamento \'grep -rn  --exclude-dir=includes --include=*.php "%s" %s\' 2>/dev/null',
         search_terms,
         _G.remote_dir,
         output_file
@@ -76,7 +71,6 @@ local function run_grep(search_terms, project_root, is_remote)
     end
     local output = vim.fn.system(grep_cmd)
     local exit_code = vim.v.shell_error
-    print("Exit code:", exit_code)
     if exit_code ~= 0 then
         if exit_code == 1 then
             return { "Nenhum resultado encontrado para: " .. search_terms }
@@ -136,7 +130,6 @@ end
 -- Função principal de busca que será chamada pelo init.lua
 function M.search_in_project(search_terms, buffer)
     local project_root = find_project_root()
-    --vim.notify("Debug: is_remote: " .. _G.host, vim.log.levels.ERROR)
     -- Exibir mensagem de carregamento
     vim.api.nvim_buf_set_lines(buffer, 0, -1, false, {
         "=== Grep Search ===",
@@ -147,10 +140,6 @@ function M.search_in_project(search_terms, buffer)
         "Carregando..."
     })
     -- Debug adicional
-    print("\n=== PRE-SEARCH DEBUG ===")
-    print("Project root:", project_root)
-    print("_G.is_remote:", _G.is_remote)
-    print("========================\n")
 
     -- Executar busca em background (assíncrono)
     vim.defer_fn(function()
@@ -185,7 +174,13 @@ function M.find_files_in_project(search_term, buffer)
             project_root,
             search_term
         )
-
+        if _G.is_remote then
+            find_cmd = string.format(
+               'ssh servidor_treinamento \'find "%s" -not -path *includes/* -type f -iname "*%s*" 2>/dev/null\'',
+               _G.remote_dir,
+               search_term
+            )
+        end
         local output = vim.fn.system(find_cmd)
         local exit_code = vim.v.shell_error
 
