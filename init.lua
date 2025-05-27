@@ -19,3 +19,30 @@ vim.cmd([[
   highlight RenderMarkdownH5Bg guibg=#FF00FF
   highlight RenderMarkdownH6Bg guibg=#00FFFF
 ]])
+local function checkRemote()
+  -- Itera por todos os argumentos passados ao Neovim
+  for _, arg in ipairs(vim.v.argv) do
+    if arg:match("^scp://") then  -- Verifica se o argumento começa com scp://
+      print("🔍 Sessão remota SCP detectada no argumento:", arg)
+
+      -- Extrai informações úteis (opcional)
+      local host = arg:match("^scp://([^/]+)/")
+      local path = arg:match("^scp://[^/]+/(.+)")
+
+      print(string.format(
+        "📡 Host: %s\n📂 Caminho remoto: %s",
+        host or "não identificado",
+        path or "não especificado"
+      ))
+      _G.is_remote = true
+      _G.host = host
+      _G.remote_dir = path
+
+      return  -- Sai após encontrar o primeiro argumento SCP
+    end
+      _G.is_remote = false
+  end
+
+  print("🖥️  Sessão local detectada (nenhum argumento SCP encontrado)")
+end
+checkRemote()
