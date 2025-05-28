@@ -152,7 +152,18 @@ function M.search_in_project(search_terms, buffer)
         end)
     end, 100) -- Delay de 100ms para mostrar o loading
 end
+local function extract_username(user_host)
+    -- Verifica se há @ na string
+    local at_pos = user_host:find("@")
 
+    -- Se encontrou @, retorna o que está antes
+    if at_pos then
+        return "/home/" .. user_host:sub(1, at_pos - 1)
+    end
+
+    -- Se não tem @, retorna a string original
+    return "/home/" .. user_host
+end
 -- Função para buscar arquivos usando 'find'
 function M.find_files_in_project(search_term, buffer)
     local project_root = find_project_root()
@@ -174,15 +185,16 @@ function M.find_files_in_project(search_term, buffer)
             search_term
         )
         if _G.is_remote then
+            project_root = extract_username(_G.remote_dir)
             find_cmd = string.format(
                'ssh %s \'find "%s" -not -path "*includes/*" -not -path "*vendor/*" -not -path "*storage/*" -not -path "*logs/*" -type f -iname "*%s*" 2>/dev/null\'',
                _G.host,
-               _G.remote_dir,
+               project_root,
                search_term
             )
             vim.notify(find_cmd, vim.log.INFO)
         end
-        local output = vim.fn.system(find_cmd)
+        local output = vim.api.system(find_cmd)
         local exit_code = vim.v.shell_error
 
         local results = {}

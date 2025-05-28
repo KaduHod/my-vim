@@ -117,3 +117,8 @@ end, {
     nargs = 1,
     desc = "Busca arquivos por nome no projeto atual",
 })
+vim.api.nvim_set_keymap('n', '<leader>rg', ':GrepSearch ', {
+    noremap = true,
+    silent = false,  -- Mostra o comando
+    desc = "Interactive grep search (excludes vendor,storage,logs)"
+})
