@@ -55,12 +55,11 @@ local function run_grep(search_terms, project_root, is_remote)
     -- Verificação robusta do estado remoto
     local is_actually_remote = (_G.is_remote == true) or (is_remote == true)
     if is_actually_remote then
-        local output_file = "/tmp/grep_output.txt"
         grep_cmd = string.format(
-            'ssh servidor_treinamento \'grep -rn  --exclude-dir=includes --include=*.php "%s" %s\' 2>/dev/null',
+            'ssh %s \'grep -rn --exclude-dir=node_modules --exclude-dir=includes --exclude-dir=vendor --exclude-dir=storage --exclude-dir=logs --include=*.php --include=*.js "%s" %s\' 2>/dev/null',
+        _G.host,
         search_terms,
-        _G.remote_dir,
-        output_file
+        _G.remote_dir
         )
     else
         grep_cmd = string.format(
@@ -176,10 +175,12 @@ function M.find_files_in_project(search_term, buffer)
         )
         if _G.is_remote then
             find_cmd = string.format(
-               'ssh servidor_treinamento \'find "%s" -not -path *includes/* -type f -iname "*%s*" 2>/dev/null\'',
+               'ssh %s \'find "%s" -not -path "*includes/*" -not -path "*vendor/*" -not -path "*storage/*" -not -path "*logs/*" -type f -iname "*%s*" 2>/dev/null\'',
+               _G.host,
                _G.remote_dir,
                search_term
             )
+            vim.notify(find_cmd, vim.log.INFO)
         end
         local output = vim.fn.system(find_cmd)
         local exit_code = vim.v.shell_error
