@@ -103,7 +103,7 @@ vim.api.nvim_create_user_command("FindFiles", function(opts)
     vim.keymap.set("n", "<CR>", function()
         local line = vim.api.nvim_get_current_line()
         local filepath = line:match("^(.-)$")
-        if filepath and vim.fn.filereadable(filepath) == 1 then
+        if filepath then
             close_win()
             local sanitized_filepath = from_first_slash(filepath)
             local cmd = RemoteEditCommand(_G.host, sanitized_filepath)
