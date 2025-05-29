@@ -79,7 +79,6 @@ vim.api.nvim_create_user_command("FindFiles", function(opts)
     local height = math.floor(vim.o.lines * 0.8)
     local row = math.floor((vim.o.lines - height) / 2)
     local col = math.floor((vim.o.columns - width) / 2)
-
     local win = vim.api.nvim_open_win(buf, true, {
         relative = "editor",
         width = width,
@@ -118,6 +117,11 @@ end, {
     desc = "Busca arquivos por nome no projeto atual",
 })
 vim.api.nvim_set_keymap('n', '<leader>rg', ':GrepSearch ', {
+    noremap = true,
+    silent = false,  -- Mostra o comando
+    desc = "Interactive grep search (excludes vendor,storage,logs)"
+})
+vim.api.nvim_set_keymap('n', '<leader>rf', ':FindFiles ', {
     noremap = true,
     silent = false,  -- Mostra o comando
     desc = "Interactive grep search (excludes vendor,storage,logs)"
