@@ -19,6 +19,21 @@ vim.cmd([[
   highlight RenderMarkdownH5Bg guibg=#FF00FF
   highlight RenderMarkdownH6Bg guibg=#00FFFF
 ]])
+local function getRemotePwd()
+    if not _G.host then
+        return nil
+    end
+
+    local cmd = string.format("ssh %s 'pwd'", _G.host)
+    local handle = io.popen(cmd)
+    local result = handle:read("*a")
+    handle:close()
+
+    -- Clean up the result (remove newlines and extra spaces)
+    result = result:gsub("[\n\r]", ""):gsub("^%s*(.-)%s*$", "%1")
+
+    return result
+end
 local function checkRemote()
   -- Itera por todos os argumentos passados ao Neovim
   for _, arg in ipairs(vim.v.argv) do
@@ -37,7 +52,8 @@ local function checkRemote()
       _G.is_remote = true
       _G.host = host
       _G.remote_dir = path
-
+      _G.home_dir = getRemotePwd()
+      print("🖥️ remote home ", _G.home_dir)
       return  -- Sai após encontrar o primeiro argumento SCP
     end
       _G.is_remote = false
