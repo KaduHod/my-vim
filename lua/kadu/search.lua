@@ -52,7 +52,7 @@ local function run_find_remote(search_term, project_root)
     if _G.os == "w" then
         str_cmd = 'ssh %s "powershell -Command \\"Get-ChildItem -Path \'/%s\' -Recurse -File -Include \'*%s*\' -Exclude \'*includes*\', \'*node_modules*\', \'*vendor*\', \'*storage*\', \'*logs*\' 2>$null\\""'
     else
-        str_cmd = 'ssh %s \'find "/%s" -not -path "*includes/*" -not -path "*node_modules/*" -not -path "*vendor/*" -not -path "*storage/*" -not -path "*logs/*" -type f -iname "*%s*" 2>/dev/null\'',
+        str_cmd = 'ssh %s \'find "/%s" -not -path "*includes/*" -not -path "*node_modules/*" -not -path "*vendor/*" -not -path "*storage/*" -not -path "*logs/*" -type f -iname "*%s*" 2>/dev/null\''
     end
     local find_cmd = string.format(
         str_cmd,
