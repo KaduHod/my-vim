@@ -48,8 +48,14 @@ local function run_find_remote(search_term, project_root)
     if not search_term or search_term == "" then
         return { "Erro: Nenhum termo de busca fornecido" }
     end
+    local str_cmd
+    if _G.os == "w" then
+        str_cmd = 'ssh %s "powershell -Command \\"Get-ChildItem -Path \'/%s\' -Recurse -File -Include \'*%s*\' -Exclude \'*includes*\', \'*node_modules*\', \'*vendor*\', \'*storage*\', \'*logs*\' 2>$null\\""'
+    else
+        str_cmd = 'ssh %s \'find "/%s" -not -path "*includes/*" -not -path "*node_modules/*" -not -path "*vendor/*" -not -path "*storage/*" -not -path "*logs/*" -type f -iname "*%s*" 2>/dev/null\'',
+    end
     local find_cmd = string.format(
-        'ssh %s \'find "/%s" -not -path "*includes/*" -not -path "*node_modules/*" -not -path "*vendor/*" -not -path "*storage/*" -not -path "*logs/*" -type f -iname "*%s*" 2>/dev/null\'',
+        str_cmd,
         _G.host,
         project_root,
         search_term
@@ -86,8 +92,14 @@ local function run_grep(search_terms, project_root, is_remote)
     -- Verificação robusta do estado remoto
     local is_actually_remote = (_G.is_remote == true) or (is_remote == true)
     if is_actually_remote then
+        local grep_str
+        if _G.os == "w" then
+            grep_str = 'ssh %s "powershell -Command \\"Get-ChildItem -Path \'/%s\' -Recurse -Include \'*.php\',\'*.js\' -Exclude \'*node_modules*\',\'*includes*\',\'*vendor*\',\'*storage*\',\'*logs*\' | Select-String -Pattern \'%s\'\\""'
+        else
+            grep_str = 'ssh %s \'grep -rn --exclude-dir=node_modules --exclude-dir=includes --exclude-dir=vendor --exclude-dir=storage --exclude-dir=logs --include=*.php --include=*.js "%s" /%s\' 2>/dev/null'
+        end
         grep_cmd = string.format(
-            'ssh %s \'grep -rn --exclude-dir=node_modules --exclude-dir=includes --exclude-dir=vendor --exclude-dir=storage --exclude-dir=logs --include=*.php --include=*.js "%s" /%s\' 2>/dev/null',
+            grep_str,
         _G.host,
         search_terms,
         _G.remote_dir

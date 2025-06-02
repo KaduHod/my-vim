@@ -53,6 +53,7 @@ local function checkRemote()
       _G.host = host
       _G.remote_dir = path
       _G.home_dir = getRemotePwd()
+      _G.os = "w"
       print("🖥️ remote home ", _G.home_dir)
       return  -- Sai após encontrar o primeiro argumento SCP
     end
