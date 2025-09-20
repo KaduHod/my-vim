@@ -6,6 +6,7 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
 
     use 'wbthomason/packer.nvim'
+    use 'wellle/context.vim'
     use('f-person/git-blame.nvim')
     use('nvim-lua/plenary.nvim')
     use { 'gen740/SmoothCursor.nvim' }
