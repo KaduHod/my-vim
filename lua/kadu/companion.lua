@@ -1,5 +1,5 @@
 -- ê a chave de API de um arquivo
-local api_key = vim.fn.readfile(vim.fn.expand("/home/carlos/.config/nvim/companion.key"), "l")  -- lê o arquivo e pega a primeira linha
+local api_key = vim.fn.readfile(vim.fn.expand("~/.config/nvim/companion.key"), "l")  -- lê o arquivo e pega a primeira linha
 local deep_seek_key = api_key[1]
 local anthropic_key = api_key[2]
 -- Configuração do codecompanion com a chave da API

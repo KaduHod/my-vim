@@ -11,6 +11,8 @@ return require('packer').startup(function(use)
     use('nvim-lua/plenary.nvim')
     use { 'gen740/SmoothCursor.nvim' }
     -- Menu de atalhos nvim
+    -- comentarios
+    use 'numToStr/Comment.nvim'
 
     -- Procurar arquivos
     use {
