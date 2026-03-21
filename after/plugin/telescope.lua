@@ -41,6 +41,9 @@ require('telescope').setup{
   }
 }
 
+require('telescope').load_extension('neoclip')
+
+vim.keymap.set('n', '<leader>y', '<cmd>Telescope neoclip<cr>')
 vim.api.nvim_create_user_command("CodeCompanionCreateWorkspace", create_codecompanion_workspace, {})
 
 

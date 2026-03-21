@@ -77,24 +77,7 @@ return require('packer').startup(function(use)
             })
         end
     }
-    -- Screen shots de codigo
---[[    use {
-        "mistricky/codesnap.nvim",
-        build = "make build_generator",
-        keys = {
-            { "<leader>ft", "<cmd>CodeSnap<cr>", mode = "x", desc = "Save selected code snapshot into clipboard" },
-            { "<leader>cs", "<cmd>CodeSnapSave<cr>", mode = "x", desc = "Save selected code snapshot in ~/Pictures" },
-        },
-        opts = {
-            save_path = "~/code-pictures",
-            has_breadcrumbs = true,
-            bg_theme = "bamboo",
-        },
-    }]]--
-    use {
-        'mistricky/codesnap.nvim',
-        run = 'make',
-    }
+
     -- DEBUGGER
     use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
     use {
@@ -117,6 +100,19 @@ return require('packer').startup(function(use)
             layout = "vsplit"
         }
     }
+
+    use {
+        "AckslD/nvim-neoclip.lua",
+        requires = {
+            -- you'll need at least one of these
+            {'nvim-telescope/telescope.nvim'},
+            -- {'ibhagwan/fzf-lua'},
+        },
+        config = function()
+            require('neoclip').setup()
+        end,
+    }
+
     use {
         'MeanderingProgrammer/render-markdown.nvim',
         after = { 'nvim-treesitter' },
