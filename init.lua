@@ -1,7 +1,10 @@
 require("kadu")
 print('Arquivos carregados')
+
+
 vim.cmd("set relativenumber")
 vim.cmd("set nowrap")
+
 vim.cmd("set foldmethod=indent")
 vim.cmd("set tabstop=4 shiftwidth=4 expandtab")
 vim.cmd("set number")
@@ -11,6 +14,19 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*" },
   command = [[%s/\s\+$//e]],
 })
+
+vim.g.clipboard = {
+    name = "macos-clipboard",
+    copy = {
+        ["+"] = "pbcopy",
+        ["*"] = "pbcopy",
+    },
+    paste = {
+        ["+"] = "pbpaste",
+        ["*"] = "pbpaste",
+    },
+}
+
 vim.cmd([[
   highlight RenderMarkdownH1Bg guibg=#FF0000
   highlight RenderMarkdownH2Bg guibg=#00FF00
@@ -19,6 +35,21 @@ vim.cmd([[
   highlight RenderMarkdownH5Bg guibg=#FF00FF
   highlight RenderMarkdownH6Bg guibg=#00FFFF
 ]])
+local function getRemotePwd()
+    if not _G.host then
+        return nil
+    end
+
+    local cmd = string.format("ssh %s 'pwd'", _G.host)
+    local handle = io.popen(cmd)
+    local result = handle:read("*a")
+    handle:close()
+
+    -- Clean up the result (remove newlines and extra spaces)
+    result = result:gsub("[\n\r]", ""):gsub("^%s*(.-)%s*$", "%1")
+
+    return result
+end
 local function checkRemote()
   -- Itera por todos os argumentos passados ao Neovim
   for _, arg in ipairs(vim.v.argv) do
@@ -37,7 +68,9 @@ local function checkRemote()
       _G.is_remote = true
       _G.host = host
       _G.remote_dir = path
-
+      _G.home_dir = getRemotePwd()
+      _G.os = "w"
+      print("🖥️ remote home ", _G.home_dir)
       return  -- Sai após encontrar o primeiro argumento SCP
     end
       _G.is_remote = false
@@ -45,6 +78,7 @@ local function checkRemote()
 
   print("🖥️  Sessão local detectada (nenhum argumento SCP encontrado)")
 end
+checkRemote()
 checkRemote()
 --[[vim.api.nvim_create_autocmd("BufReadPost", {
     pattern = "*",
@@ -58,3 +92,13 @@ checkRemote()
 vim.o.fileencoding = 'latin1'
 vim.o.fileencodings = 'latin1'
 vim.bo.fileencoding = 'latin1']]--
+local args = vim.fn.argv()
+if #args > 0 then
+    print("Argumentos recebidos pelo Neovim:")
+    for i, arg in ipairs(args) do
+        print(string.format("[%d]: %s", i, arg))
+    end
+else
+    print("Nenhum argumento de arquivo foi detectado.")
+end
+

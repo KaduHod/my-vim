@@ -193,8 +193,6 @@ end, {
 })
 
 -- Mapeamentos de teclas sugeridos
-vim.keymap.set('n', '<leader>rg', ':RemoteGrep ', {noremap = true, desc = 'Remote Grep'})
-vim.keymap.set('n', '<leader>rf', ':RemoteGrepFull ', {noremap = true, desc = 'Remote Grep with options'})
 vim.keymap.set('n', '<leader>rc', ':RemoteCmd ', {noremap = true, desc = 'Remote Command'})
 
 
@@ -314,7 +312,6 @@ end, {
     return {'pattern', 'dir=', 'type=', 'maxdepth=', 'exclude='}
   end,
 })
-vim.keymap.set('n', '<leader>rf', ':RemoteFind ', {noremap = true, desc = 'Remote Find'})
 
 
 

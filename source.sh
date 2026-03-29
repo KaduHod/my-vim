@@ -2,20 +2,21 @@ plugindir="$(pwd)/after/plugin"
 kadudir="$(pwd)/lua/kadu"
 
 
-source(){
-	local diretorio="$1"
-	for arquivo in "$diretorio"/*
-	do
-		# Verifica se o arquivo é um arquivo regular
-		if [ -f "$arquivo" ]
-		then
-			echo "$arquivo"
+carregar_arquivos(){
+    local diretorio="$1"
 
-      # Executa o comando source no arquivo
-      source "$arquivo"
-		fi
-	done
+    # Verifica se o diretório existe antes de continuar
+    if [ -d "$diretorio" ]; then
+        for arquivo in "$diretorio"/*
+        do
+            if [ -f "$arquivo" ]; then
+                echo "Carregando: $arquivo"
+                # O comando 'source' (ou '.') executa o conteúdo do arquivo no shell atual
+                source "$arquivo"
+            fi
+        done
+    fi
 }
 
-source "$plugindir"
-source "$kadudir"
+carregar_arquivos "$plugindir"
+carregar_arquivos "$kadudir"

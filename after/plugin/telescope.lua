@@ -41,6 +41,38 @@ require('telescope').setup{
   }
 }
 
+require('neoclip').setup({
+  -- Outras configurações do NeoClip...
+  default_register = '*',
+  keys = {
+    telescope = {
+      i = {
+        select = '<cr>',
+        paste = '<c-p>',
+        paste_behind = '<c-k>',
+        replay = '<c-q>',  -- replay a macro
+        delete = '<c-d>',  -- delete an entry
+        edit = '<c-e>',  -- edit an entry
+      },
+      n = {
+        select = '<cr>',
+        paste = 'p',
+        paste_behind = 'P',
+        replay = 'q',
+        delete = 'd',
+        edit = 'e',
+      },
+    },
+  },
+})
+
+
+
+require('telescope').load_extension('neoclip')
+
+vim.keymap.set('n', '<leader>y', '<cmd>Telescope neoclip<cr>')
+
 vim.api.nvim_create_user_command("CodeCompanionCreateWorkspace", create_codecompanion_workspace, {})
 
+vim.keymap.set('n', '<leader>m', builtin.marks, { desc = 'List marks with Telescope' })
 

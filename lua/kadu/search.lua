@@ -44,6 +44,43 @@ local function find_project_root()
     local root = search_upward(current_dir)
     return root or current_dir -- Se não encontrar, usar diretório atual
 end
+local function run_find_remote(search_term, project_root)
+    if not search_term or search_term == "" then
+        return { "Erro: Nenhum termo de busca fornecido" }
+    end
+    local str_cmd
+    if _G.os == "w" then
+        str_cmd = 'ssh %s "powershell -Command \\"Get-ChildItem -Path \'/%s\' -Recurse -File -Include \'*%s*\' -Exclude \'*includes*\', \'*node_modules*\', \'*vendor*\', \'*storage*\', \'*logs*\' 2>$null\\""'
+    else
+        str_cmd = 'ssh %s \'find "/%s" -not -path "*includes/*" -not -path "*node_modules/*" -not -path "*vendor/*" -not -path "*storage/*" -not -path "*logs/*" -type f -iname "*%s*" 2>/dev/null\''
+    end
+    local find_cmd = string.format(
+        str_cmd,
+        _G.host,
+        project_root,
+        search_term
+    )
+    local output = vim.fn.system(find_cmd)
+    local exit_code = vim.v.shell_error
+    if exit_code ~= 0 then
+        if exit_code == 1 then
+            return { "Nenhum resultado encontrado para: " .. search_term .. " " .. find_cmd }
+        else
+            return {
+                string.format(
+                "Erro ao executar grep (código %d):\n%s",
+                exit_code,
+                output
+                )
+            }
+        end
+    end
+    local lines = {}
+    for line in output:gmatch("[^\r\n]+") do
+        table.insert(lines, line)
+    end
+    return #lines > 0 and lines or { "Nenhum resultado encontrado para: " .. search_terms }
+end
 -- Função para executar grep e formatar resultados
 local function run_grep(search_terms, project_root, is_remote)
     if not search_terms or search_terms == "" then
@@ -55,12 +92,17 @@ local function run_grep(search_terms, project_root, is_remote)
     -- Verificação robusta do estado remoto
     local is_actually_remote = (_G.is_remote == true) or (is_remote == true)
     if is_actually_remote then
-        local output_file = "/tmp/grep_output.txt"
+        local grep_str
+        if _G.os == "w" then
+            grep_str = 'ssh %s "powershell -Command \\"Get-ChildItem -Path \'/%s\' -Recurse -Include \'*.php\',\'*.js\' -Exclude \'*node_modules*\',\'*includes*\',\'*vendor*\',\'*storage*\',\'*logs*\' | Select-String -Pattern \'%s\'\\""'
+        else
+            grep_str = 'ssh %s \'grep -rn --exclude-dir=node_modules --exclude-dir=includes --exclude-dir=vendor --exclude-dir=storage --exclude-dir=logs --include=*.php --include=*.js "%s" /%s\' 2>/dev/null'
+        end
         grep_cmd = string.format(
-            'ssh servidor_treinamento \'grep -rn  --exclude-dir=includes --include=*.php "%s" %s\' 2>/dev/null',
+            grep_str,
+        _G.host,
         search_terms,
-        _G.remote_dir,
-        output_file
+        _G.remote_dir
         )
     else
         grep_cmd = string.format(
@@ -83,20 +125,20 @@ local function run_grep(search_terms, project_root, is_remote)
                 )
             }
         end
-end
+    end
 
-local lines = {}
-for line in output:gmatch("[^\r\n]+") do
-    table.insert(lines, line)
-end
+    local lines = {}
+    for line in output:gmatch("[^\r\n]+") do
+        table.insert(lines, line)
+    end
 
-return #lines > 0 and lines or { "Nenhum resultado encontrado para: " .. search_terms }
+    return #lines > 0 and lines or { "Nenhum resultado encontrado para: " .. search_terms }
 end
 
 -- Função para formatar os resultados no buffer
 local function format_results(search_terms, project_root, results)
     local formatted = {
-        "=== Grep Search Results ===",
+        "=== Search Results ===",
         "",
         -- Mostra informações específicas para sessões remotas
         _G.is_remote and ("🔗 Conexão Remota: " .. (_G.host or "Desconhecido")) or "💻 Sessão Local",
@@ -153,11 +195,21 @@ function M.search_in_project(search_terms, buffer)
         end)
     end, 100) -- Delay de 100ms para mostrar o loading
 end
+local function extract_username(user_host)
+    -- Verifica se há @ na string
+    local at_pos = user_host:find("@")
 
+    -- Se encontrou @, retorna o que está antes
+    if at_pos then
+        return "/home/" .. user_host:sub(1, at_pos - 1)
+    end
+
+    -- Se não tem @, retorna a string original
+    return "/home/" .. user_host
+end
 -- Função para buscar arquivos usando 'find'
 function M.find_files_in_project(search_term, buffer)
     local project_root = find_project_root()
-
     -- Mensagem inicial
     vim.api.nvim_buf_set_lines(buffer, 0, -1, false, {
         "=== Find Files ===",
@@ -169,55 +221,12 @@ function M.find_files_in_project(search_term, buffer)
     })
 
     vim.defer_fn(function()
-        local find_cmd = string.format(
-            'find "%s" -type f -iname "*%s*" 2>/dev/null',
-            project_root,
-            search_term
-        )
-        if _G.is_remote then
-            find_cmd = string.format(
-               'ssh servidor_treinamento \'find "%s" -not -path *includes/* -type f -iname "*%s*" 2>/dev/null\'',
-               _G.remote_dir,
-               search_term
-            )
-        end
-        local output = vim.fn.system(find_cmd)
-        local exit_code = vim.v.shell_error
-
-        local results = {}
-
-        if exit_code == 0 and output ~= "" then
-            for line in output:gmatch("[^\r\n]+") do
-                table.insert(results, line)
-            end
-        elseif exit_code == 1 or output == "" then
-            results = { "Nenhum arquivo encontrado para: " .. search_term }
-        else
-            results = { "Erro ao executar find (código " .. exit_code .. ")" }
-        end
-
+        local results = run_find_remote(search_term, project_root)
+        local formatted_results = format_results(search_term, project_root, results)
         -- Atualizar o buffer com os resultados
         vim.schedule(function()
-            local formatted = {
-                "=== Find Files Results ===",
-                "",
-                "Projeto: " .. project_root,
-                "Busca: " .. search_term,
-                "Arquivos encontrados: " .. #results,
-                "",
-                string.rep("-", 50),
-                "",
-            }
-
-            for _, line in ipairs(results) do
-                table.insert(formatted, line)
-            end
-
-            table.insert(formatted, "")
-            table.insert(formatted, string.rep("-", 50))
-            table.insert(formatted, "Pressione 'q' para fechar | Enter para abrir arquivo")
-
-            vim.api.nvim_buf_set_lines(buffer, 0, -1, false, formatted)
+            vim.api.nvim_buf_set_lines(buffer, 0, -1, false, formatted_results)
+            vim.notify("Busca concluída: " .. #results .. " resultado(s)", vim.log.levels.INFO)
         end)
     end, 100)
 end

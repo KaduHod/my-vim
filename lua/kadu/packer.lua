@@ -114,6 +114,21 @@ return require('packer').startup(function(use)
             layout = "vsplit"
         }
     }
+
+
+    --cliboarmanager
+    use {
+        "AckslD/nvim-neoclip.lua",
+        requires = {
+            -- you'll need at least one of these
+            {'nvim-telescope/telescope.nvim'},
+            -- {'ibhagwan/fzf-lua'},
+        }
+    }
+
+
+
+
     use {
         'MeanderingProgrammer/render-markdown.nvim',
         after = { 'nvim-treesitter' },
