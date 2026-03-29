@@ -1,11 +1,11 @@
 local dap = require("dap")
 local dapui = require("dapui")
 local debuggersPath = os.getenv("HOME") .. "/debuggers"
-vim.keymap.set('n', '<leader>b', function() dap.toggle_breakpoint() end)
-vim.keymap.set('n', '<F1>', function() require('dap').continue() end)
-vim.keymap.set('n', '<F2>', function() require('dap').step_over() end)
-vim.keymap.set('n', '<F3>', function() require('dap').step_into() end)
-vim.keymap.set('n', '<F4>', function() require('dap').step_out() end)
+vim.keymap.set('n', '<leader>b', function() dap.toggle_breakpoint() end, { desc = 'Debug: Toggle Breakpoint' })
+vim.keymap.set('n', '<F1>', function() require('dap').continue() end, { desc = 'Debug: Continue'})
+vim.keymap.set('n', '<F2>', function() require('dap').step_over() end, { desc = 'Debug: Step Over'})
+vim.keymap.set('n', '<F3>', function() require('dap').step_into() end, { desc = 'Debug: Step Into'})
+vim.keymap.set('n', '<F4>', function() require('dap').step_out() end, { desc = 'Debug: Step Out'})
 dapui.setup()
 vim.keymap.set('n', '<F5>', require('dapui').toggle, { desc = 'Toggle debug UI' })
 
