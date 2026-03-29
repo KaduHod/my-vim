@@ -1,7 +1,6 @@
 require("kadu")
 print('Arquivos carregados')
 
-
 vim.cmd("set relativenumber")
 vim.cmd("set nowrap")
 
