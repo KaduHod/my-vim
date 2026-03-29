@@ -46,5 +46,4 @@ require('telescope').load_extension('neoclip')
 
 vim.keymap.set('n', '<leader>y', '<cmd>Telescope neoclip<cr>')
 vim.api.nvim_create_user_command("CodeCompanionCreateWorkspace", create_codecompanion_workspace, {})
-
-
+vim.keymap.set('n', '<leader>m', builtin.marks, { desc = 'List marks with Telescope' })
