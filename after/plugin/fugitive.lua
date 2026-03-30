@@ -16,8 +16,8 @@ local builtin = require('telescope.builtin')
 
 vim.keymap.set('n', '<leader>fc', function()
   local search_dirs = {
-    vim.fn.getcwd(),
-    vim.fn.expand("~/Library/Application Support/Cyberduck"),
+    -- vim.fn.getcwd(),
+    -- vim.fn.expand("~/Library/Application Support/Cyberduck"),
     "/private/var/folders"
   }
 
