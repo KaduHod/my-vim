@@ -1,7 +1,18 @@
 -- ê a chave de API de um arquivo
+local f = io.open(vim.fn.expand("~/.config/nvim/companion.key"), "r")
+local content = f:read("*all")
+f:close()
+
+local lines = vim.split(content, "\n")
+local deep_seek_key = lines[1]:gsub("%s+", "")
+
+print(deep_seek_key)
+
+
 local api_key = vim.fn.readfile(vim.fn.expand("~/.config/nvim/companion.key"), "l")  -- lê o arquivo e pega a primeira linha
-local deep_seek_key = api_key[1]
-local anthropic_key = api_key[2]
+-- local deep_seek_key = vim.trim(api_key[1])
+local anthropic_key = vim.trim(api_key[2])
+
 -- Configuração do codecompanion com a chave da API
 require("codecompanion").setup({
     opts = {
@@ -84,12 +95,8 @@ require("codecompanion").setup({
             return require("codecompanion.adapters").extend("openai_compatible", {
                 env = {
                     url = "https://api.deepseek.com",
-                    api_key = deep_seek_key,
+                    api_key = "DEEPSEEK_API_KEY",
                     chat_url = "/v1/chat/completions",
-                },
-                headers = {
-                    ["Content-Type"] = "application/json",
-                    ["Authorization"] = "Bearer ${api_key}",
                 },
                 schema = {
                     model = {
@@ -176,12 +183,12 @@ require("codecompanion").setup({
 })
 -- Mapeamento de teclas
 vim.keymap.set('n', '<leader>c', '<cmd>CodeCompanionChat<cr>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>C', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true})
-vim.keymap.set('v', '<leader>rf', ':CodeCompanion Refactor<CR>', { desc = 'Refatorar seleção' })
-vim.keymap.set('v', '<leader>im', ':CodeCompanion Improve<CR>', { desc = 'Melhorar seleção' })
-vim.keymap.set('v', '<leader>fx', ':CodeCompanion Fix<CR>', { desc = 'Corrigir seleção' })
-vim.keymap.set('v', '<leader>ex', ':CodeCompanion Explain<CR>', { desc = 'Explicar seleção' })
-vim.keymap.set('v', '<leader>ts', ':CodeCompanion Tests<CR>', { desc = 'Gerar testes para seleção' })
-vim.keymap.set('v', '<leader>cc', function()
+-- vim.keymap.set('n', '<leader>C', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true})
+vim.keymap.set('v', '<leader>r', ':CodeCompanion Refactor<CR>', { desc = 'Refatorar seleção' })
+vim.keymap.set('v', '<leader>i', ':CodeCompanion Improve<CR>', { desc = 'Melhorar seleção' })
+vim.keymap.set('v', '<leader>f', ':CodeCompanion Fix<CR>', { desc = 'Corrigir seleção' })
+vim.keymap.set('v', '<leader>e', ':CodeCompanion Explain<CR>', { desc = 'Explicar seleção' })
+vim.keymap.set('v', '<leader>t', ':CodeCompanion Tests<CR>', { desc = 'Gerar testes para seleção' })
+vim.keymap.set('v', '<leader>C', function()
   require('codecompanion').chat()
 end, { desc = "Abrir chat com seleção" })
