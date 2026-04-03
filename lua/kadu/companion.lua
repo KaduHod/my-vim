@@ -1,18 +1,3 @@
--- ê a chave de API de um arquivo
-local f = io.open(vim.fn.expand("~/.config/nvim/companion.key"), "r")
-local content = f:read("*all")
-f:close()
-
-local lines = vim.split(content, "\n")
-local deep_seek_key = lines[1]:gsub("%s+", "")
-
-print(deep_seek_key)
-
-
-local api_key = vim.fn.readfile(vim.fn.expand("~/.config/nvim/companion.key"), "l")  -- lê o arquivo e pega a primeira linha
--- local deep_seek_key = vim.trim(api_key[1])
-local anthropic_key = vim.trim(api_key[2])
-
 -- Configuração do codecompanion com a chave da API
 require("codecompanion").setup({
     opts = {
@@ -158,7 +143,7 @@ require("codecompanion").setup({
         anthropic = function()
             return require("codecompanion.adapters").extend('anthropic',{
                 env = {
-                    api_key = anthropic_key
+                    api_key = "ANTHROPIC_API_KEY"
                 }
             })
         end,
