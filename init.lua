@@ -1,11 +1,11 @@
 require("kadu")
 print('Arquivos carregados')
 
-
 vim.cmd("set relativenumber")
 vim.cmd("set nowrap")
 
-vim.cmd("set foldmethod=indent")
+vim.cmd("set foldmethod=syntax")
+vim.cmd("set foldlevelstart=0")
 vim.cmd("set tabstop=4 shiftwidth=4 expandtab")
 vim.cmd("set number")
 vim.opt.clipboard = "unnamedplus"
