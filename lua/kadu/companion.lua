@@ -47,7 +47,7 @@ require("codecompanion").setup({
     },
     strategies = {
         chat = {
-            adapter = "deepseek", -- Usa o adaptador deepseek para chat
+            adapter = "openai", -- Usa o adaptador deepseek para chat
             slash_commands = {
                 ["file"] = {
                     -- Location to the slash command in CodeCompanion
@@ -61,7 +61,7 @@ require("codecompanion").setup({
             },
         },
         inline = {
-            adapter = "deepseek",
+            adapter = "openai",
             keymaps = {
                 accept_change = {
                     modes = { n = "ga" },
@@ -147,6 +147,18 @@ require("codecompanion").setup({
                 }
             })
         end,
+        openai = function()
+            return require("codecompanion.adapters").extend('openai', {
+                env = {
+                    api_key = "OPENAI_API_KEY"
+                },
+                schema = {
+                    model = {
+                        default = "gpt-5-mini",
+                    },
+                },
+            })
+        end
     },
     display = {
         chat = {
@@ -168,7 +180,7 @@ require("codecompanion").setup({
 })
 -- Mapeamento de teclas
 vim.keymap.set('n', '<leader>c', '<cmd>CodeCompanionChat<cr>', { noremap = true, silent = true })
--- vim.keymap.set('n', '<leader>C', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true})
+vim.keymap.set('n', '<leader>cc', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true})
 vim.keymap.set('v', '<leader>r', ':CodeCompanion Refactor<CR>', { desc = 'Refatorar seleção' })
 vim.keymap.set('v', '<leader>i', ':CodeCompanion Improve<CR>', { desc = 'Melhorar seleção' })
 vim.keymap.set('v', '<leader>f', ':CodeCompanion Fix<CR>', { desc = 'Corrigir seleção' })

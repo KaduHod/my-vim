@@ -1,3 +1,4 @@
+-- AVISO: Este arquivo contém magia LUA suficiente para invocar dragões e fechar buffers.
 -- Importar o plugin
 local barbar = require('barbar')
 --
