@@ -1,13 +1,11 @@
 local lsp_zero = require('lsp-zero')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local lsp = require("lspconfig")
 local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 mason.setup()
 
 mason_lspconfig.setup({
-	ensure_installed = {"tailwindcss", "ts_ls", "gopls", "intelephense", "quick_lint_js", "lua_ls", "clangd", "bashls", "kotlin_language_server", "pyright", "cssls", "bufls", "htmx"}
-
+	ensure_installed = {"tailwindcss", "ts_ls", "gopls", "intelephense", "quick_lint_js", "lua_ls", "clangd", "bashls", "kotlin_language_server", "pyright", "cssls", "jdtls", "ast_grep", "htmx"}
 })
 
 lsp_zero.extend_lspconfig()
@@ -35,74 +33,73 @@ end
 -- 	capabilities = capabilities
 -- }
 
-lsp.quick_lint_js.setup {
+vim.lsp.config('quick_lint_js', {
     on_attach = on_attach,
 	capabilities = capabilities
-}
+})
 
-
-lsp.jdtls.setup {
+vim.lsp.config('jdtls', {
     on_attach = on_attach,
 	capabilities = capabilities
-}
+})
 
-lsp.tailwindcss.setup {
+vim.lsp.config('tailwindcss', {
 	on_attach = on_attach,
 	capabilities = capabilities
-}
+})
 
-lsp.buf_ls.setup {
+vim.lsp.config('buf_ls', {
 	on_attach = on_attach,
 	capabilities = capabilities
-}
+})
 
-lsp.gopls.setup {
+vim.lsp.config('gopls', {
 	on_attach = on_attach,
 	capabilities = capabilities
-}
+})
 
-lsp.cssls.setup {
+vim.lsp.config('cssls', {
 	on_attach = on_attach,
 	capabilities = capabilities
-}
+})
 
-lsp.pyright.setup {
+vim.lsp.config('pyright', {
 	on_attach = on_attach,
 	capabilities = capabilities
-}
+})
 
 
-lsp.kotlin_language_server.setup {
+vim.lsp.config('kotlin_language_server', {
 	on_attach = on_attach,
 	capabilities = capabilities
-}
+})
 
-lsp.intelephense.setup {
+vim.lsp.config('intelephense', {
 	on_attach = on_attach,
 	capabilities = capabilities
-}
+})
 
-lsp.bashls.setup {
+vim.lsp.config('bashls', {
 	on_attach = on_attach,
 	capabilities = capabilities
-}
+})
 
-lsp.angularls.setup {
+vim.lsp.config('angularls', {
 	on_attach = on_attach,
 	capabilities = capabilities
-}
+})
 
-lsp.lua_ls.setup {
+vim.lsp.config('lua_ls', {
 	on_attach = on_attach,
 	capabilities = capabilities
-}
+})
 
-lsp.clangd.setup {
+vim.lsp.config('clangd', {
 	on_attach = on_attach,
 	capabilities = capabilities
-}
+})
 
-lsp.apex_ls.setup {
+vim.lsp.config('apex_ls', {
 	on_attach = on_attach,
 	capabilities = capabilities
-}
+})
