@@ -37,6 +37,8 @@ vim.keymap.set('n', '<leader>fc', function()
         if selection and selection.path then
           vim.cmd('vsplit ' .. vim.fn.fnameescape(selection.path))
           vim.cmd('windo diffthis')
+          vim.cmd('windo setlocal nofoldenable')
+          vim.cmd('windo setlocal foldmethod=manual')
         end
       end
 

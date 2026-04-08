@@ -10,11 +10,11 @@ vim.cmd("set tabstop=4 shiftwidth=4 expandtab")
 vim.cmd("set number")
 vim.opt.clipboard = "unnamedplus"
 vim.cmd("let g:netrw_liststyle = 3")
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*" },
-  command = [[%s/\s\+$//e]],
-})
-
+-- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+--   pattern = { "*" },
+--   command = [[%s/\s\+$//e]],
+-- })
+--
 vim.g.clipboard = {
     name = "macos-clipboard",
     copy = {
