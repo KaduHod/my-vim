@@ -13,6 +13,7 @@ vim.api.nvim_exec([[
   augroup FiletypeDetect
     au BufNewFile,BufRead *.hbs setfiletype html
     au BufNewFile,BufRead *.tmpl setfiletype html
+    au BufNewFile,BufRead *.ejs setfiletype html
   augroup END
 ]], false)
 vim.api.nvim_create_autocmd("FileType", {
