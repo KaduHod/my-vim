@@ -47,7 +47,7 @@ require("codecompanion").setup({
     },
     strategies = {
         chat = {
-            adapter = "openai", -- Usa o adaptador deepseek para chat
+            adapter = "deepseek", -- Usa o adaptador deepseek para chat
             slash_commands = {
                 ["file"] = {
                     -- Location to the slash command in CodeCompanion

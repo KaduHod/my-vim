@@ -22,7 +22,9 @@ vim.lsp.config('ast_grep', {
 	capabilities = capabilities
 })
 vim.lsp.config('htmx', {
-    filetypes = { "html", "tmpl" }
+    filetypes = { "html", "tmpl" },
+    on_attach = on_attach,
+	capabilities = capabilities
 })
 vim.lsp.config('ts_ls', {
     on_attach = on_attach,
