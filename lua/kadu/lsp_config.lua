@@ -5,7 +5,7 @@ local mason_lspconfig = require("mason-lspconfig")
 mason.setup()
 
 mason_lspconfig.setup({
-	ensure_installed = {"tailwindcss", "ts_ls", "gopls", "intelephense", "quick_lint_js", "lua_ls", "clangd", "bashls", "kotlin_language_server", "pyright", "cssls", "jdtls", "ast_grep", "htmx"}
+	ensure_installed = { "html" ,"tailwindcss", "ts_ls", "gopls", "intelephense", "quick_lint_js", "lua_ls", "clangd", "bashls", "kotlin_language_server", "pyright", "cssls", "jdtls", "ast_grep", "htmx"}
 })
 
 lsp_zero.extend_lspconfig()
@@ -21,14 +21,19 @@ vim.lsp.config('ast_grep', {
     on_attach = on_attach,
 	capabilities = capabilities
 })
+vim.lsp.config('html', {
+    on_attach = on_attach,
+	capabilities = capabilities
+})
 vim.lsp.config('htmx', {
-    filetypes = { "html", "tmpl" },
+    filetypes = { "html", "tmpl", "ejs" },
     on_attach = on_attach,
 	capabilities = capabilities
 })
 vim.lsp.config('ts_ls', {
     on_attach = on_attach,
-	capabilities = capabilities
+	capabilities = capabilities,
+    filetypes = { "javascript", "typescript", "html", "ejs" },
 })
 
 vim.lsp.config('quick_lint_js', {

@@ -16,6 +16,13 @@ vim.api.nvim_exec([[
     au BufNewFile,BufRead *.ejs setfiletype html
   augroup END
 ]], false)
+vim.filetype.add({
+  extension = {
+    ejs = "html",
+    tmpl = "html",
+    hbs = "html",
+  }
+})
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
   callback = function()
