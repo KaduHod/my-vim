@@ -158,6 +158,7 @@ return require('packer').startup(function(use)
 		})
 	end
 }
-
+-- ejs
+use 'nikvdp/ejs-syntax'
 end)
 
