@@ -1,3 +1,4 @@
+require("kadu.packer")
 require("kadu.remap")
 -- require("kadu.companion")
 require("kadu.lsp_config")
@@ -11,8 +12,6 @@ require("kadu.debug")
 require("kadu.smoothscroll")
 require("kadu.remoteGrep")
 require("kadu.remoteFindOpen")
---require("kadu.markdown")
-require("kadu.packer")
 vim.api.nvim_exec([[
   augroup FiletypeDetect
     au BufNewFile,BufRead *.hbs setfiletype html
@@ -28,3 +27,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 print('Arquivo kaduhod carregado!')
+vim.keymap.set('i', '<C-l>', function()
+    require('cmp').complete()
+end)

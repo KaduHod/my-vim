@@ -19,7 +19,6 @@ local on_attach = function(_, _)
   vim.keymap.set('n', '<leader>s', require('telescope.builtin').lsp_references, { desc = 'LSP: Show references' })
   vim.keymap.set('n', '<leader>t', vim.lsp.buf.hover,             { desc = 'LSP: Hover' })
 end
-
 -- ═══════════════════════════════════════════
 --  Configs individuais
 -- ═══════════════════════════════════════════
@@ -39,40 +38,14 @@ for _, server in ipairs(servers) do
 end
 
 -- ═══════════════════════════════════════════
---  Intelephense — config especial com root_dir
+--  Desabilita phpactor (conflita com intelephense)
 -- ═══════════════════════════════════════════
-
-vim.lsp.config('intelephense', {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  cmd = { "intelephense", "--stdio" },
-  single_file_support = true,
-  filetypes = { 'php' },
-
-  root_dir = function(fname)
-    local root = vim.fs.root(fname, { 'composer.json', '.git', '.phpcs.xml' })
-    return root or vim.fn.expand('~/.php-workspace')
-  end,
-
-  settings = {
-    intelephense = {
-      files = { maxSize = 5000000 },
-      stubs = {
-        "bcmath", "bz2", "calendar", "Core", "curl", "date",
-        "dom", "filter", "fileinfo", "gd", "gettext", "hash",
-        "iconv", "imap", "intl", "json", "libxml", "mbstring",
-        "mcrypt", "mysqli", "openssl", "pcre",
-        "PDO", "pdo_mysql", "Phar", "Reflection",
-        "session", "SimpleXML", "soap", "sockets", "sodium",
-        "SPL", "standard", "tokenizer", "xml", "xmlreader",
-        "xmlwriter", "xsl", "zip", "zlib", "superglobals",
-      },
-    },
-  },
-})
-
 vim.lsp.config('phpactor', { enabled = false })
 vim.lsp.enable('intelephense')
+-- ═══════════════════════════════════════════
+--  Intelephense — via autocmd para garantir
+--  que o cmp já está carregado quando conecta
+-- ═══════════════════════════════════════════
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'php',
   callback = function()
