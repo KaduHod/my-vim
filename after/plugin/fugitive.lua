@@ -18,7 +18,7 @@ vim.keymap.set('n', '<leader>fc', function()
   local search_dirs = {
     -- vim.fn.getcwd(),
     -- vim.fn.expand("~/Library/Application Support/Cyberduck"),
-    "/private/var/folders"
+    "/private/var/folders/8k/4r_twrbx5nnfh0lrdlmfxgk80000gp/T/ch.sudo.cyberduck"
   }
 
   builtin.find_files({

@@ -6,7 +6,7 @@ vim.cmd("set nowrap")
 
 vim.cmd("set foldmethod=syntax")
 vim.cmd("set foldlevelstart=0")
-vim.cmd("set tabstop=4 shiftwidth=4 expandtab")
+vim.cmd("set tabstop=4 shiftwidth=4 noexpandtab")
 vim.cmd("set number")
 vim.opt.clipboard = "unnamedplus"
 vim.cmd("let g:netrw_liststyle = 3")
@@ -53,34 +53,34 @@ end
 local function checkRemote()
   -- Itera por todos os argumentos passados ao Neovim
   for _, arg in ipairs(vim.v.argv) do
-    if arg:match("^scp://") then  -- Verifica se o argumento comeÃ§a com scp://
-      print("ðŸ” SessÃ£o remota SCP detectada no argumento:", arg)
+    if arg:match("^scp://") then  -- Verifica se o argumento começa com scp://
+      print("¿ Sessão remota SCP detectada no argumento:", arg)
 
-      -- Extrai informaÃ§Ãµes Ãºteis (opcional)
+      -- Extrai informações úteis (opcional)
       local host = arg:match("^scp://([^/]+)/")
       local path = arg:match("^scp://[^/]+/(.+)")
 
       print(string.format(
-        "ðŸ“¡ Host: %s\nðŸ“‚ Caminho remoto: %s",
-        host or "nÃ£o identificado",
-        path or "nÃ£o especificado"
+        "¿ Host: %s\n¿ Caminho remoto: %s",
+        host or "não identificado",
+        path or "não especificado"
       ))
       _G.is_remote = true
       _G.host = host
       _G.remote_dir = path
       _G.home_dir = getRemotePwd()
       _G.os = "w"
-      print("ðŸ–¥ï¸ remote home ", _G.home_dir)
-      return  -- Sai apÃ³s encontrar o primeiro argumento SCP
+      print("¿¿ remote home ", _G.home_dir)
+      return  -- Sai após encontrar o primeiro argumento SCP
     end
       _G.is_remote = false
   end
 
-  print("ðŸ–¥ï¸  SessÃ£o local detectada (nenhum argumento SCP encontrado)")
+  print("¿¿  Sessão local detectada (nenhum argumento SCP encontrado)")
 end
 checkRemote()
 checkRemote()
---[[vim.api.nvim_create_autocmd("BufReadPost", {
+vim.api.nvim_create_autocmd("BufReadPost", {
     pattern = "*",
     callback = function()
         if vim.bo.fileencoding ~= 'latin1' then
@@ -91,7 +91,7 @@ checkRemote()
 })
 vim.o.fileencoding = 'latin1'
 vim.o.fileencodings = 'latin1'
-vim.bo.fileencoding = 'latin1']]--
+vim.bo.fileencoding = 'latin1'
 local args = vim.fn.argv()
 if #args > 0 then
     print("Argumentos recebidos pelo Neovim:")
