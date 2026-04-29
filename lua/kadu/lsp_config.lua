@@ -11,7 +11,7 @@ mason_lspconfig.setup({
     "quick_lint_js", "lua_ls", "clangd", "bashls",
     "kotlin_language_server", "pyright", "cssls", "jdtls", "ast_grep"
   }
-
+})
 
 -- ═══════════════════════════════════════════
 --  Configs individuais
