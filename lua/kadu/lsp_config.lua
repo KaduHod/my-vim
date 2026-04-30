@@ -12,6 +12,12 @@ mason_lspconfig.setup({
     "kotlin_language_server", "pyright", "cssls", "jdtls", "ast_grep"
   }
 })
+local on_attach = function(_,_)
+	vim.keymap.set('n', '<leader>d', vim.lsp.buf.definition, { desc = 'LSP: Go to definition'})
+	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = 'LSP: Go to implementation'})
+	vim.keymap.set('n', '<leader>s', require('telescope.builtin').lsp_references, { desc = 'LSP: Show references'})
+	vim.keymap.set('n', '<leader>t', vim.lsp.buf.hover, { desc = 'LSP: Hover'})
+end
 
 -- ═══════════════════════════════════════════
 --  Configs individuais
